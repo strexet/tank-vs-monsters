@@ -1,5 +1,3 @@
-using System;
-using Infrastructure;
 using Infrastructure.Core;
 using Services.Input;
 using UnityEngine;
@@ -14,19 +12,13 @@ namespace Player
         private IInputService _inputService;
         private Camera _camera;
 
-        private void Awake()
-        {
-            _inputService = Game.InputService;
-        }
+        private void Awake() => _inputService = Game.InputService;
 
-        private void Start()
-        {
-            _camera = Camera.main;
-        }
+        private void Start() => _camera = Camera.main;
 
         private void FixedUpdate()
         {
-            Vector3 movementVector = Vector3.zero;
+            var movementVector = Vector3.zero;
 
             if (_inputService.MovementAxis.sqrMagnitude > Constants.Epsilon)
             {
@@ -36,7 +28,7 @@ namespace Player
 
                 transform.forward = movementVector;
             }
-            
+
             Move(movementVector);
         }
 

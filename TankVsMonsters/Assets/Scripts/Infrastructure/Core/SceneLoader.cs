@@ -18,7 +18,7 @@ namespace Infrastructure.Core
                 onLoaded?.Invoke();
                 return;
             }
-             
+
             _coroutineRunner.StartCoroutine(LoadSceneRoutine(sceneName, onLoaded));
         }
 

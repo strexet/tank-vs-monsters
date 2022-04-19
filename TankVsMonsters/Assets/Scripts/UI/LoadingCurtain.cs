@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,10 +8,7 @@ namespace UI
         [SerializeField] private CanvasGroup _curtain;
         [SerializeField] private float _fadeSpeed = 0.03f;
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
+        private void Awake() => DontDestroyOnLoad(this);
 
         public void Show()
         {
@@ -20,10 +16,7 @@ namespace UI
             gameObject.SetActive(true);
         }
 
-        public void Hide()
-        {
-            StartCoroutine(FadeOutRoutine());
-        }
+        public void Hide() => StartCoroutine(FadeOutRoutine());
 
         private IEnumerator FadeOutRoutine()
         {
@@ -38,8 +31,12 @@ namespace UI
 
         private void OnValidate()
         {
-            if (_fadeSpeed < 0.0001f)
-                _fadeSpeed = 0.0001f;
+            const float minFadeSpeed = 0.0001f;
+
+            if (_fadeSpeed < minFadeSpeed)
+            {
+                _fadeSpeed = minFadeSpeed;
+            }
         }
     }
 }

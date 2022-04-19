@@ -23,20 +23,12 @@ namespace Infrastructure.StateMachine
             _sceneLoader.Load(InitialScene, EnterMainLevel);
         }
 
-        private void EnterMainLevel()
-        {
-            _gameStateMachine.Enter<LoadLevelState, string>(MainScene);
-        }
+        private void EnterMainLevel() => _gameStateMachine.Enter<LoadLevelState, string>(MainScene);
 
-        private void RegisterServices()
-        {
-            RegisterInputService();
-        }
+        private void RegisterServices() => RegisterInputService();
 
-        public void Exit()
-        {
-        }
-        
+        public void Exit() { }
+
         private static void RegisterInputService()
         {
             var inputService = new GameInputService();

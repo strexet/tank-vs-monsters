@@ -7,13 +7,12 @@ namespace Infrastructure.StateMachine
 
     public interface IExitableState
     {
-        void Exit(); 
-
+        void Exit();
     }
-    
+
     public interface IPayloadedState<in TPayload> : IExitableState
     {
         void Enter(TPayload payload);
-        void Exit(); 
+        void Exit();
     }
 }

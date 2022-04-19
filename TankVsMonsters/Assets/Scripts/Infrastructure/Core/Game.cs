@@ -9,11 +9,7 @@ namespace Infrastructure.Core
         public static IInputService InputService { get; set; }
         public GameStateMachine StateMachine { get; }
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain)
-        {
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain); 
-        }
-
-        
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain) =>
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain);
     }
 }

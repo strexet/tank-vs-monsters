@@ -7,7 +7,7 @@ namespace Services.Input
     public class GameInputService : IInputService, PlayerInputActions.IGameplayActions
     {
         private readonly PlayerInputActions _playerInputActions;
-        
+
         public Vector2 MovementAxis { get; private set; }
         public bool IsAttackButtonPressed { get; private set; }
 
@@ -22,11 +22,8 @@ namespace Services.Input
 
         public void Disable() =>
             _playerInputActions.Disable();
-        
-        public void OnMovement(InputAction.CallbackContext context)
-        {
-            MovementAxis = context.ReadValue<Vector2>();
-        }
+
+        public void OnMovement(InputAction.CallbackContext context) => MovementAxis = context.ReadValue<Vector2>();
 
         public void OnShoot(InputAction.CallbackContext context)
         {

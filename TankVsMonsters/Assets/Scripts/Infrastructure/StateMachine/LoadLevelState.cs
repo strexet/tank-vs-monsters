@@ -9,7 +9,7 @@ namespace Infrastructure.StateMachine
         private const string InitialPointTag = "InitialPoint";
         private const string PlayerPrefabPath = "Player/Prefabs/TankPlayer";
         private const string HudPrefabPath = "UI/Prefabs/Hud";
-        
+
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
@@ -27,10 +27,7 @@ namespace Infrastructure.StateMachine
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
-        public void Exit()
-        {
-            _loadingCurtain.Hide();
-        }
+        public void Exit() => _loadingCurtain.Hide();
 
         private void OnLoaded()
         {
@@ -39,7 +36,7 @@ namespace Infrastructure.StateMachine
 
             Instantiate(PlayerPrefabPath, initialTransform.position, initialTransform.rotation);
             Instantiate(HudPrefabPath);
-            
+
             _gameStateMachine.Enter<GameLoopState>();
         }
 
@@ -48,7 +45,7 @@ namespace Infrastructure.StateMachine
             var prefab = Resources.Load<GameObject>(prefabPath);
             return Object.Instantiate(prefab);
         }
-        
+
         private static GameObject Instantiate(string prefabPath, Vector3 position, Quaternion rotation)
         {
             var prefab = Resources.Load<GameObject>(prefabPath);

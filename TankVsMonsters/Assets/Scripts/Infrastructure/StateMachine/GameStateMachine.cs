@@ -15,7 +15,7 @@ namespace Infrastructure.StateMachine
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
-                [typeof(GameLoopState)] = new GameLoopState(this),
+                [typeof(GameLoopState)] = new GameLoopState(this)
             };
 
         public void Enter<TState>() where TState : class, IState
@@ -33,16 +33,13 @@ namespace Infrastructure.StateMachine
         private TState ChangeState<TState>() where TState : class, IExitableState
         {
             _activeState?.Exit();
-            
+
             var state = GetState<TState>();
             _activeState = state;
-            
+
             return state;
         }
 
-        private TState GetState<TState>() where TState : class, IExitableState
-        {
-            return _states[typeof(TState)] as TState;
-        }
+        private TState GetState<TState>() where TState : class, IExitableState => _states[typeof(TState)] as TState;
     }
 }

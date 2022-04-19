@@ -1,4 +1,3 @@
-using Infrastructure;
 using Infrastructure.Core;
 using Services.Input;
 using UnityEngine;
@@ -15,20 +14,11 @@ namespace Player
         private float _currentVelocity;
         private float _currentAngularVelocity;
 
-        private void Awake()
-        {
-            _inputService = Game.InputService;
-        }
+        private void Awake() => _inputService = Game.InputService;
 
-        private void Update()
-        {
-            UpdateVelocitiesFromInput();
-        }
+        private void Update() => UpdateVelocitiesFromInput();
 
-        private void FixedUpdate()
-        {
-            Move();
-        }
+        private void FixedUpdate() => Move();
 
         private void UpdateVelocitiesFromInput()
         {
