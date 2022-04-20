@@ -25,6 +25,8 @@
 
 # Rider cache directory
 .idea/
+# Rider persisted state data
+/ProjectSettings/RiderScriptEditorPersistedState.asset
 
 # Visual Studio cache directory
 .vs/
