@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace UI
@@ -6,7 +5,7 @@ namespace UI
     public class LoadingCurtain : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _curtain;
-        [SerializeField] private float _fadeSpeed = 0.03f;
+        [SerializeField] private float _fadeTime = 1f;
 
         private void Awake() => DontDestroyOnLoad(this);
 
@@ -16,27 +15,11 @@ namespace UI
             gameObject.SetActive(true);
         }
 
-        public void Hide() => StartCoroutine(FadeOutRoutine());
-
-        private IEnumerator FadeOutRoutine()
+        public void Hide()
         {
-            while (_curtain.alpha > 0)
-            {
-                _curtain.alpha -= _fadeSpeed;
-                yield return null;
-            }
-
-            gameObject.SetActive(false);
-        }
-
-        private void OnValidate()
-        {
-            const float minFadeSpeed = 0.0001f;
-
-            if (_fadeSpeed < minFadeSpeed)
-            {
-                _fadeSpeed = minFadeSpeed;
-            }
+            LeanTween.alphaCanvas(_curtain, 0, _fadeTime)
+               .setEase(LeanTweenType.easeOutQuad)
+               .setOnComplete(_ => gameObject.SetActive(false));
         }
     }
 }
