@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7320742966222013317}
   - component: {fileID: 3298135327085762960}
   m_Layer: 9
-  m_Name: Enemy_Buggy
+  m_Name: EnemyBuggy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
