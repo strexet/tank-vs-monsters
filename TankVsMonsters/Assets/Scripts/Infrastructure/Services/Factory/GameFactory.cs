@@ -1,3 +1,5 @@
+using System;
+using Extensions;
 using Infrastructure.Services.AssetManagement;
 using UnityEngine;
 
@@ -8,6 +10,12 @@ namespace Infrastructure.Services.Factory
         private const string InitialPointTag = "InitialPoint";
 
         private readonly IAssetProvider _assetProvider;
+        private GameObject _player;
+
+        public bool IsPlayerCreated { get; private set; }
+        public TransformData PlayerTransformData => _player.transform.GetTransformData();
+        public Transform PlayerTransform => _player.transform;
+        public event Action PlayerCreated;
 
         public GameFactory(IAssetProvider assetProvider) => _assetProvider = assetProvider;
 
@@ -16,7 +24,11 @@ namespace Infrastructure.Services.Factory
             var initialPoint = GameObject.FindWithTag(InitialPointTag);
             var initialTransform = initialPoint.transform;
 
-            return _assetProvider.Instantiate(AssetPath.PlayerPrefab, initialTransform.position, initialTransform.rotation);
+            _player = _assetProvider.Instantiate(AssetPath.PlayerPrefab, initialTransform.position, initialTransform.rotation);
+            IsPlayerCreated = true;
+            PlayerCreated?.Invoke();
+
+            return _player;
         }
 
         public GameObject CreateHud() => _assetProvider.Instantiate(AssetPath.HudPrefab);

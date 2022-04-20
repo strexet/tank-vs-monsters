@@ -13,7 +13,7 @@ namespace Infrastructure.Core
         private void Awake()
         {
             var loadingCurtain = Instantiate(_loadingCurtainPrefab);
-            
+
             _game = new Game(this, loadingCurtain);
             _game.StateMachine.Enter<BootstrapState>();
 
