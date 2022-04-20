@@ -1,4 +1,4 @@
-using Infrastructure.StateMachine;
+using Infrastructure.States;
 using UI;
 using UnityEngine;
 

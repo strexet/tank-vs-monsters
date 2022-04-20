@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Services.Input
+namespace Infrastructure.Services.Input
 {
-    public interface IInputService
+    public interface IInputService : IService
     {
         Vector2 MovementAxis { get; }
         bool IsAttackButtonPressed { get; }

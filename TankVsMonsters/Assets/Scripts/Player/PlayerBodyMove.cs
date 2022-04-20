@@ -1,5 +1,5 @@
-using Infrastructure.Core;
-using Services.Input;
+using Infrastructure.Services;
+using Infrastructure.Services.Input;
 using UnityEngine;
 
 namespace Player
@@ -14,7 +14,7 @@ namespace Player
         private float _currentVelocity;
         private float _currentAngularVelocity;
 
-        private void Awake() => _inputService = Game.InputService;
+        private void Awake() => _inputService = ServiceLocator.Container.Single<IInputService>();
 
         private void Update() => UpdateVelocitiesFromInput();
 

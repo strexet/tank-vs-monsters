@@ -1,4 +1,4 @@
-namespace Infrastructure.StateMachine
+namespace Infrastructure.States
 {
     public class GameLoopState : IState
     {

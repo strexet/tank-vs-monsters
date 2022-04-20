@@ -1,5 +1,5 @@
-using Infrastructure.Core;
-using Services.Input;
+using Infrastructure.Services;
+using Infrastructure.Services.Input;
 using UnityEngine;
 
 namespace Player
@@ -12,7 +12,7 @@ namespace Player
         private IInputService _inputService;
         private Camera _camera;
 
-        private void Awake() => _inputService = Game.InputService;
+        private void Awake() => _inputService = ServiceLocator.Container.Single<IInputService>();
 
         private void Start() => _camera = Camera.main;
 

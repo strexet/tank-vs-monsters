@@ -2,7 +2,7 @@ using Input.Generated;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Services.Input
+namespace Infrastructure.Services.Input
 {
     public class GameInputService : IInputService, PlayerInputActions.IGameplayActions
     {
