@@ -34,7 +34,7 @@ namespace Player
 
         private void Move(Vector3 movementVector)
         {
-            movementVector += Physics.gravity;
+            movementVector += UnityEngine.Physics.gravity;
             _characterController.Move(Time.fixedDeltaTime * _movementData.ForwardSpeed * movementVector);
         }
     }
