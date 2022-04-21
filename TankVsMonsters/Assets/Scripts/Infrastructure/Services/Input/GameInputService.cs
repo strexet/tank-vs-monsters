@@ -10,6 +10,8 @@ namespace Infrastructure.Services.Input
 
         public Vector2 MovementAxis { get; private set; }
         public bool IsAttackButtonPressed { get; private set; }
+        public bool IsNextWeaponButtonPressed { get; private set; }
+        public bool IsPreviousWeaponButtonPressed { get; private set; }
 
         public GameInputService()
         {
@@ -34,6 +36,30 @@ namespace Infrastructure.Services.Input
             else if (context.canceled)
             {
                 IsAttackButtonPressed = false;
+            }
+        }
+
+        public void OnNextWeapon(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                IsNextWeaponButtonPressed = true;
+            }
+            else if (context.canceled)
+            {
+                IsNextWeaponButtonPressed = false;
+            }
+        }
+
+        public void OnPreviousWeapon(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                IsPreviousWeaponButtonPressed = true;
+            }
+            else if (context.canceled)
+            {
+                IsPreviousWeaponButtonPressed = false;
             }
         }
     }

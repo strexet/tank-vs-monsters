@@ -6,5 +6,7 @@ namespace Infrastructure.Services.Input
     {
         Vector2 MovementAxis { get; }
         bool IsAttackButtonPressed { get; }
+        bool IsNextWeaponButtonPressed { get; }
+        bool IsPreviousWeaponButtonPressed { get; }
     }
 }
