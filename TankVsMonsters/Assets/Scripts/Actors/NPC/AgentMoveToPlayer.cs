@@ -3,7 +3,7 @@ using Infrastructure.Services.Factory;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace NPC
+namespace Actors.NPC
 {
     public class AgentMoveToPlayer : MonoBehaviour
     {

@@ -10,7 +10,6 @@ namespace Infrastructure.Services.Factory
         TransformData PlayerTransformData { get; }
         Transform PlayerTransform { get; }
         event Action PlayerCreated;
-        
 
         GameObject CreatePlayer();
         GameObject CreateHud();

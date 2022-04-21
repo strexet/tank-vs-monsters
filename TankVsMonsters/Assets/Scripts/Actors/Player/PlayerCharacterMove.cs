@@ -2,7 +2,7 @@ using Infrastructure.Services;
 using Infrastructure.Services.Input;
 using UnityEngine;
 
-namespace Player
+namespace Actors.Player
 {
     public class PlayerCharacterMove : MonoBehaviour
     {

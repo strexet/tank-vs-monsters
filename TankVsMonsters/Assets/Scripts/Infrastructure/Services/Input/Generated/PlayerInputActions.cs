@@ -46,6 +46,24 @@ namespace Input.Generated
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""512ae320-de6a-4662-8db0-e8610c8678a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfdf7fa1-49b6-4ae3-81a8-d83131aaf2ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -105,13 +123,90 @@ namespace Input.Generated
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Keyboard Arrows - 2D Vector"",
+                    ""id"": ""3c49eb51-773d-419e-b7da-ca81b421a484"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""989aa511-dee5-493e-81ce-dd14e4cc25ef"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""88c9a836-4011-49ca-942c-70dfaef7ff23"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""943e1c06-72c3-4de0-a8b2-f160c32f0240"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fc8cf340-69c0-416b-8808-daefc6b032fb"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""92115acc-4f21-423a-a5ff-4808b0c2bb2d"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""817cbced-a826-402b-8936-06c008b16515"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69d1945d-54d5-47ca-bafa-e0ab06906815"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -124,6 +219,8 @@ namespace Input.Generated
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
             m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
+            m_Gameplay_NextWeapon = m_Gameplay.FindAction("NextWeapon", throwIfNotFound: true);
+            m_Gameplay_PreviousWeapon = m_Gameplay.FindAction("PreviousWeapon", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -185,12 +282,16 @@ namespace Input.Generated
         private IGameplayActions m_GameplayActionsCallbackInterface;
         private readonly InputAction m_Gameplay_Movement;
         private readonly InputAction m_Gameplay_Shoot;
+        private readonly InputAction m_Gameplay_NextWeapon;
+        private readonly InputAction m_Gameplay_PreviousWeapon;
         public struct GameplayActions
         {
             private @PlayerInputActions m_Wrapper;
             public GameplayActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
             public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
+            public InputAction @NextWeapon => m_Wrapper.m_Gameplay_NextWeapon;
+            public InputAction @PreviousWeapon => m_Wrapper.m_Gameplay_PreviousWeapon;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -206,6 +307,12 @@ namespace Input.Generated
                     @Shoot.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
                     @Shoot.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
                     @Shoot.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
+                    @NextWeapon.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextWeapon;
+                    @NextWeapon.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextWeapon;
+                    @NextWeapon.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNextWeapon;
+                    @PreviousWeapon.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousWeapon;
+                    @PreviousWeapon.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousWeapon;
+                    @PreviousWeapon.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPreviousWeapon;
                 }
                 m_Wrapper.m_GameplayActionsCallbackInterface = instance;
                 if (instance != null)
@@ -216,6 +323,12 @@ namespace Input.Generated
                     @Shoot.started += instance.OnShoot;
                     @Shoot.performed += instance.OnShoot;
                     @Shoot.canceled += instance.OnShoot;
+                    @NextWeapon.started += instance.OnNextWeapon;
+                    @NextWeapon.performed += instance.OnNextWeapon;
+                    @NextWeapon.canceled += instance.OnNextWeapon;
+                    @PreviousWeapon.started += instance.OnPreviousWeapon;
+                    @PreviousWeapon.performed += instance.OnPreviousWeapon;
+                    @PreviousWeapon.canceled += instance.OnPreviousWeapon;
                 }
             }
         }
@@ -224,6 +337,8 @@ namespace Input.Generated
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
+            void OnNextWeapon(InputAction.CallbackContext context);
+            void OnPreviousWeapon(InputAction.CallbackContext context);
         }
     }
 }

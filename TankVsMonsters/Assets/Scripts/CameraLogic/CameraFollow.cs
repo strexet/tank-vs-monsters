@@ -3,7 +3,7 @@ using Infrastructure.Services;
 using Infrastructure.Services.Factory;
 using UnityEngine;
 
-namespace GameCamera
+namespace CameraLogic
 {
     public class CameraFollow : MonoBehaviour
     {

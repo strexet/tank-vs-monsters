@@ -15,11 +15,9 @@ namespace UI
             gameObject.SetActive(true);
         }
 
-        public void Hide()
-        {
+        public void Hide() =>
             LeanTween.alphaCanvas(_curtain, 0, _fadeTime)
                .setEase(LeanTweenType.easeOutQuad)
                .setOnComplete(_ => gameObject.SetActive(false));
-        }
     }
 }
