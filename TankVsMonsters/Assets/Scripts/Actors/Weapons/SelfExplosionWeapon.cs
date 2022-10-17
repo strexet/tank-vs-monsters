@@ -29,10 +29,11 @@ namespace Actors.Weapons
 
         private void AddExplosionForce()
         {
+            using var colliders = CollidersPool.GetArray();
+
             var explosionPosition = transform.position;
-            var colliders = CollidersPool.GetArray();
             var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition,
-                _explosionRadius, colliders, _explosionLayerMask);
+                _explosionRadius, colliders.RawData, _explosionLayerMask);
 
             for (var i = 0; i < overlapCount; i++)
             {
@@ -43,8 +44,6 @@ namespace Actors.Weapons
                     rb.AddExplosionForce(_explosionForce, explosionPosition, _explosionRadius);
                 }
             }
-
-            CollidersPool.Return(colliders);
         }
 
         private void PlayParticles()
