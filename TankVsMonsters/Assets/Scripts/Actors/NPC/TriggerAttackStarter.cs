@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Actors.NPC
 {
-    public class AttackTrigger : MonoBehaviour
+    [RequireComponent(typeof(IWeapon))]
+    public class TriggerAttackStarter : MonoBehaviour
     {
         [SerializeField] private TriggerObserver _triggerObserver;
 

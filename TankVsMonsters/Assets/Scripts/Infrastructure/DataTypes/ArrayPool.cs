@@ -32,7 +32,7 @@ namespace Infrastructure.DataTypes
                                            + $"array_length={array.Length}, "
                                            + $"pool_length={_length}");
             }
-            
+
             _arrays.Enqueue(array);
         }
     }
