@@ -1,33 +1,27 @@
 using System;
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.Core
 {
     public class SceneLoader
     {
-        private readonly ICoroutineRunner _coroutineRunner;
-
-        public SceneLoader(ICoroutineRunner coroutineRunner) =>
-            _coroutineRunner = coroutineRunner;
-
         public void Load(string sceneName, Action onLoaded = null)
         {
-            if (SceneManager.GetActiveScene().name == sceneName)
+            if (string.Equals(sceneName, SceneManager.GetActiveScene().name))
             {
                 onLoaded?.Invoke();
                 return;
             }
 
-            _coroutineRunner.StartCoroutine(LoadSceneRoutine(sceneName, onLoaded));
+            LoadSceneAsync(sceneName, onLoaded);
         }
 
-        private static IEnumerator LoadSceneRoutine(string sceneName, Action onLoaded)
+        private static async UniTaskVoid LoadSceneAsync(string sceneName, Action onLoaded)
         {
-            var waitNextScene = SceneManager.LoadSceneAsync(sceneName);
-
-            while (!waitNextScene.isDone)
-                yield return null;
+            await SceneManager.LoadSceneAsync(sceneName).ToUniTask(
+                // Progress.Create<float>(x => Debug.Log(x))
+            );
 
             onLoaded?.Invoke();
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infrastructure.Core
 {
-    public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
+    public class GameBootstrapper : MonoBehaviour
     {
         [SerializeField] private LoadingCurtain _loadingCurtainPrefab;
 
@@ -14,7 +14,7 @@ namespace Infrastructure.Core
         {
             var loadingCurtain = Instantiate(_loadingCurtainPrefab);
 
-            _game = new Game(this, loadingCurtain);
+            _game = new Game(loadingCurtain);
             _game.StateMachine.Enter<BootstrapState>();
 
             DontDestroyOnLoad(this);

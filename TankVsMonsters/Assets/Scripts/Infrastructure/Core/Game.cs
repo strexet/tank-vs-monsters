@@ -8,7 +8,7 @@ namespace Infrastructure.Core
     {
         public GameStateMachine StateMachine { get; }
 
-        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain loadingCurtain) =>
-            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), loadingCurtain, ServiceLocator.Container);
+        public Game(LoadingCurtain loadingCurtain) =>
+            StateMachine = new GameStateMachine(new SceneLoader(), loadingCurtain, ServiceLocator.Container);
     }
 }
