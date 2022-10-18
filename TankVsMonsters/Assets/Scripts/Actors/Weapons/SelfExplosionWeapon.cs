@@ -1,5 +1,5 @@
-using Infrastructure.DataTypes;
 using UnityEngine;
+using UsefulTools.Runtime.Pools;
 
 namespace Actors.Weapons
 {
