@@ -8,6 +8,7 @@ namespace Actors.NPC
     public class TriggerAttackStarter : MonoBehaviour
     {
         [SerializeField] private TriggerObserver _triggerObserver;
+        [SerializeField] private GameObject _owner;
 
         private IWeapon _weapon;
 
@@ -16,6 +17,6 @@ namespace Actors.NPC
         private void OnEnable() => _triggerObserver.TriggerEnter += OnEnter;
         private void OnDisable() => _triggerObserver.TriggerEnter -= OnEnter;
 
-        private void OnEnter(Collider other) => _weapon.Attack(gameObject, other.gameObject);
+        private void OnEnter(Collider other) => _weapon.Attack(_owner, other.gameObject);
     }
 }

@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 7320895947413952036}
+  _owner: {fileID: 6374885551343750605}
 --- !u!1 &3124083832312920405
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +204,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6374885551343478431}
-  - component: {fileID: 2413427788073321008}
   - component: {fileID: 3134886709878591775}
   - component: {fileID: 6374885551349998801}
   - component: {fileID: 7320742966222013317}
@@ -232,19 +232,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 71.52, z: 0}
---- !u!114 &2413427788073321008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6374885551343750605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5663174748646e087db72e39617f4c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _triggerObserver: {fileID: 7320895947413952036}
 --- !u!114 &3134886709878591775
 MonoBehaviour:
   m_ObjectHideFlags: 0
