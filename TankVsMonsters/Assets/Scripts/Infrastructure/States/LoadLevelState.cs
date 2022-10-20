@@ -1,4 +1,5 @@
 using Infrastructure.Core;
+using Infrastructure.Services;
 using Infrastructure.Services.Factory;
 using UI;
 
@@ -23,6 +24,7 @@ namespace Infrastructure.States
         public void Enter(string sceneName)
         {
             _loadingCurtain.Show();
+            ServiceLocator.Container.DisposeSceneServices();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
