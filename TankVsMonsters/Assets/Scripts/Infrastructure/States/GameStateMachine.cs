@@ -22,13 +22,13 @@ namespace Infrastructure.States
 
         public void Enter<TState>() where TState : class, IState
         {
-            IState state = ChangeState<TState>();
+            var state = ChangeState<TState>();
             state.Enter();
         }
 
         public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
         {
-            IPayloadedState<TPayload> state = ChangeState<TState>();
+            var state = ChangeState<TState>();
             state.Enter(payload);
         }
 

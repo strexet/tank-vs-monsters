@@ -24,7 +24,7 @@ namespace Infrastructure.States
             RegisterServices();
         }
 
-        public void Enter() => _sceneLoader.Load(InitialScene, EnterMainLevel);
+        public void Enter() => _sceneLoader.Load(InitialScene, onLoaded: LoadGameLevel);
 
         public void Exit() { }
 
@@ -35,7 +35,7 @@ namespace Infrastructure.States
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
         }
 
-        private void EnterMainLevel() => _gameStateMachine.Enter<LoadLevelState, string>(MainScene);
+        private void LoadGameLevel() => _gameStateMachine.Enter<LoadLevelState, string>(MainScene);
 
         private static GameInputService CreateInputService()
         {
