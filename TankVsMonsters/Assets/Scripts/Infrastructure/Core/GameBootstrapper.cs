@@ -12,6 +12,16 @@ namespace Infrastructure.Core
 
         private void Awake()
         {
+#if UNITY_EDITOR
+            var bootstrapper = FindObjectOfType<GameBootstrapper>();
+
+            if (bootstrapper != null)
+            {
+                Debug.LogWarning($"[MORE THAN ONE]<b><color=red>{nameof(GameBootstrapper)}.{nameof(Awake)}></color></b> "
+                                 + $"There is more than one {nameof(GameBootstrapper)}!");
+            }
+#endif
+
             var loadingCurtain = Instantiate(_loadingCurtainPrefab);
 
             _game = new Game(loadingCurtain);
