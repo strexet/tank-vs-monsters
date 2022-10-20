@@ -20,19 +20,19 @@ namespace Infrastructure.States
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
 
-        public void Enter<TState>() where TState : class, IState
+        public void Enter<TState>() where TState : IState
         {
             var state = ChangeState<TState>();
             state.Enter();
         }
 
-        public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
+        public void Enter<TState, TPayload>(TPayload payload) where TState : IPayloadedState<TPayload>
         {
             var state = ChangeState<TState>();
             state.Enter(payload);
         }
 
-        private TState ChangeState<TState>() where TState : class, IExitableState
+        private TState ChangeState<TState>() where TState : IExitableState
         {
             _activeState?.Exit();
 
@@ -42,6 +42,6 @@ namespace Infrastructure.States
             return state;
         }
 
-        private TState GetState<TState>() where TState : class, IExitableState => _states[typeof(TState)] as TState;
+        private TState GetState<TState>() where TState : IExitableState => (TState)_states[typeof(TState)];
     }
 }
