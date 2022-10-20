@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virtual Button - Gamepad East (Input System)
       objectReference: {fileID: 0}
+    - target: {fileID: 1531213445540486, guid: 7fef6b3c731a44920afa6eb66d204a7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224977699150327530, guid: 7fef6b3c731a44920afa6eb66d204a7d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
