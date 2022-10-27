@@ -10,6 +10,12 @@ namespace Actors.Player
         private Camera _camera;
         private Vector3 _movementVector;
 
+        public Vector3 CurrentPosition
+        {
+            get => transform.position;
+            set => WarpTo(value);
+        }
+
         private void Start() => _camera = Camera.main;
 
         public void UpdateMoveInput(Vector2 movementAxis)
@@ -37,6 +43,13 @@ namespace Actors.Player
 
             movement += UnityEngine.Physics.gravity;
             _characterController.Move(Time.fixedDeltaTime * movementData.ForwardSpeed * movement);
+        }
+
+        private void WarpTo(Vector3 position)
+        {
+            _characterController.enabled = false;
+            transform.position = position;
+            _characterController.enabled = true;
         }
     }
 }

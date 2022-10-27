@@ -13,12 +13,12 @@ namespace Infrastructure.Core
         private void Awake()
         {
 #if UNITY_EDITOR
-            var bootstrapper = FindObjectOfType<GameBootstrapper>();
+            var bootstrappers = FindObjectsOfType<GameBootstrapper>();
 
-            if (bootstrapper != null)
+            if (bootstrappers.Length != 1)
             {
-                Debug.LogWarning($"[MORE THAN ONE]<b><color=red>{nameof(GameBootstrapper)}.{nameof(Awake)}></color></b> "
-                                 + $"There is more than one {nameof(GameBootstrapper)}!");
+                Debug.LogWarning($"[MORE THAN ONE] <b><color=red>{nameof(GameBootstrapper)}.{nameof(Awake)}></color></b> " +
+                                 $"There is more than one {nameof(GameBootstrapper)}!");
             }
 #endif
 

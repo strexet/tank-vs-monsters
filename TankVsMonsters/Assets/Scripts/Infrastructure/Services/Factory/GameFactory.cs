@@ -1,7 +1,9 @@
 using System;
-using Extensions;
+using System.Collections.Generic;
 using Infrastructure.Services.AssetManagement;
+using Infrastructure.Services.PersistentProgress;
 using UnityEngine;
+using UsefulTools.Runtime.Extensions;
 
 namespace Infrastructure.Services.Factory
 {
@@ -10,7 +12,13 @@ namespace Infrastructure.Services.Factory
         private const string InitialPointTag = "InitialPoint";
 
         private readonly IAssetProvider _assetProvider;
+        private readonly List<ISavedProgressReader> _progressReaders = new();
+        private readonly List<ISavedProgress> _progressWriters = new();
+
         private GameObject _player;
+
+        public IReadOnlyList<ISavedProgressReader> ProgressReaders => _progressReaders;
+        public IReadOnlyList<ISavedProgress> ProgressWriters => _progressWriters;
 
         public bool IsPlayerCreated { get; private set; }
         public TransformData PlayerTransformData => _player.transform.GetTransformData();
@@ -24,13 +32,51 @@ namespace Infrastructure.Services.Factory
             var initialPoint = GameObject.FindWithTag(InitialPointTag);
             var initialTransform = initialPoint.transform;
 
-            _player = _assetProvider.Instantiate(AssetPath.PlayerPrefab, initialTransform.position, initialTransform.rotation);
+            _player = InstantiateRegistered(AssetPath.PlayerPrefab, initialTransform.position, initialTransform.rotation);
             IsPlayerCreated = true;
             PlayerCreated?.Invoke();
 
             return _player;
         }
 
-        public GameObject CreateHud() => _assetProvider.Instantiate(AssetPath.HudPrefab);
+        public GameObject CreateHud() => InstantiateRegistered(AssetPath.HudPrefab);
+
+        public void CleanUpProgressWatchers()
+        {
+            _progressReaders.Clear();
+            _progressWriters.Clear();
+        }
+
+        private GameObject InstantiateRegistered(string prefabPath, Vector3 position, Quaternion rotation)
+        {
+            var gameObject = _assetProvider.Instantiate(prefabPath, position, rotation);
+            RegisterProgressWatchers(gameObject);
+            return gameObject;
+        }
+
+        private GameObject InstantiateRegistered(string prefabPath)
+        {
+            var gameObject = _assetProvider.Instantiate(prefabPath);
+            RegisterProgressWatchers(gameObject);
+            return gameObject;
+        }
+
+        private void RegisterProgressWatchers(GameObject gameObject)
+        {
+            foreach (var progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
+            {
+                Register(progressReader);
+            }
+        }
+
+        private void Register(ISavedProgressReader progressReader)
+        {
+            _progressReaders.Add(progressReader);
+
+            if (progressReader is ISavedProgress progressWriter)
+            {
+                _progressWriters.Add(progressWriter);
+            }
+        }
     }
 }

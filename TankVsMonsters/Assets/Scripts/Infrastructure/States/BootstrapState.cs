@@ -3,13 +3,14 @@ using Infrastructure.Services;
 using Infrastructure.Services.AssetManagement;
 using Infrastructure.Services.Factory;
 using Infrastructure.Services.Input;
+using Infrastructure.Services.PersistentProgress;
+using Infrastructure.Services.SaveLoad;
 
 namespace Infrastructure.States
 {
     public class BootstrapState : IState
     {
         private const string InitialScene = "Initial";
-        private const string MainScene = "Main";
 
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -24,7 +25,7 @@ namespace Infrastructure.States
             RegisterServices();
         }
 
-        public void Enter() => _sceneLoader.Load(InitialScene, onLoaded: LoadGameLevel);
+        public void Enter() => _sceneLoader.Load(InitialScene, OnLevelLoaded);
 
         public void Exit() { }
 
@@ -32,10 +33,19 @@ namespace Infrastructure.States
         {
             _services.RegisterSingle<IInputService>(CreateInputService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+
+            _services.RegisterSingle<IGameFactory>(
+                new GameFactory(_services.Single<IAssetProvider>())
+            );
+
+            _services.RegisterSingle<ISaveLoadService>(
+                new SaveLoadService(_services.Single<IPersistentProgressService>(),
+                    _services.Single<IGameFactory>())
+            );
         }
 
-        private void LoadGameLevel() => _gameStateMachine.Enter<LoadLevelState, string>(MainScene);
+        private void OnLevelLoaded() => _gameStateMachine.Enter<LoadProgressState>();
 
         private static GameInputService CreateInputService()
         {

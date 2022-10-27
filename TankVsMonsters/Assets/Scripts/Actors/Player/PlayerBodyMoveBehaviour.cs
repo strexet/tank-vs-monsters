@@ -9,6 +9,12 @@ namespace Actors.Player
 
         private Vector2 _movementAxis;
 
+        public Vector3 CurrentPosition
+        {
+            get => _rigidbody.position;
+            set => _rigidbody.MovePosition(value);
+        }
+
         public void UpdateMoveInput(Vector2 movementAxis) => _movementAxis = movementAxis;
 
         public void Move(MovementData movementData)
