@@ -227,7 +227,8 @@ GameObject:
   - component: {fileID: 5876183952836637331}
   - component: {fileID: 5876183952841555787}
   - component: {fileID: 5876183952838373597}
-  - component: {fileID: 5876183951431013609}
+  - component: {fileID: 2014515779521870089}
+  - component: {fileID: 1963711022251353578}
   m_Layer: 13
   m_Name: PlayerTank
   m_TagString: Untagged
@@ -281,7 +282,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.7, z: 1.6}
   m_Center: {x: 0, y: 0.85, z: 0}
---- !u!114 &5876183951431013609
+--- !u!114 &2014515779521870089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876183952836385217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55ec79185f84cd1a0c96b584bd66193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveBehaviour: {fileID: 1963711022251353578}
+  _movementData: {fileID: 11400000, guid: 41c8665a2916a41c4803d5c56db1d7b7, type: 2}
+--- !u!114 &1963711022251353578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,7 +309,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 5876183952841555787}
-  _movementData: {fileID: 11400000, guid: 41c8665a2916a41c4803d5c56db1d7b7, type: 2}
 --- !u!1 &5876183952836389463
 GameObject:
   m_ObjectHideFlags: 0

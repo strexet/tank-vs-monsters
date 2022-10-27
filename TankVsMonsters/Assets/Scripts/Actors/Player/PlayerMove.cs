@@ -7,7 +7,7 @@ namespace Actors.Player
 {
     public class PlayerMove : MonoBehaviour
     {
-        [SerializeField] private MonoBehaviourImplementation<IMoveBehaviour> _moveBehaviour;
+        [SerializeField] private MonoBehaviourImplementation<IPlayerMoveBehaviour> _moveBehaviour;
         [SerializeField] private MovementData _movementData;
 
         private IInputService _inputService;

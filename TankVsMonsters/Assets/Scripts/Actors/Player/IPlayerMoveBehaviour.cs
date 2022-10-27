@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Actors.Player
 {
-    public interface IMoveBehaviour
+    public interface IPlayerMoveBehaviour
     {
         void UpdateMoveInput(Vector2 movementAxis);
         void Move(MovementData movementData);

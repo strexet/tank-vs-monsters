@@ -3,7 +3,7 @@ using UsefulTools.Runtime.DataStructures;
 
 namespace Actors.Player
 {
-    public class PlayerCharacterMoveBehaviour : MonoBehaviourImplementation<IMoveBehaviour>, IMoveBehaviour
+    public class PlayerCharacterMoveBehaviour : MonoBehaviourImplementation<IPlayerMoveBehaviour>, IPlayerMoveBehaviour
     {
         [SerializeField] private CharacterController _characterController;
 

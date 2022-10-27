@@ -3,7 +3,7 @@ using UsefulTools.Runtime.DataStructures;
 
 namespace Actors.Player
 {
-    public class PlayerBodyMove : MonoBehaviourImplementation<IMoveBehaviour>, IMoveBehaviour
+    public class PlayerBodyMoveBehaviour : MonoBehaviourImplementation<IPlayerMoveBehaviour>, IPlayerMoveBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
 
