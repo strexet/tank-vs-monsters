@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UI.SimpleInputExtension
+namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
 	public class SimpleInputDragListenerIS : MonoBehaviour, ISimpleInputDraggable
 	{

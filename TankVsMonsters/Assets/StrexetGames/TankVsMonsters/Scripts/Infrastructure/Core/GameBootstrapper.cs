@@ -1,8 +1,8 @@
-using Infrastructure.States;
-using UI;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.States;
+using StrexetGames.TankVsMonsters.Scripts.UI;
 using UnityEngine;
 
-namespace Infrastructure.Core
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public class GameBootstrapper : MonoBehaviour
     {

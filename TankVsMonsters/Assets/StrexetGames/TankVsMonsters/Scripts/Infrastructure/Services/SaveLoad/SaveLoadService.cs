@@ -1,9 +1,10 @@
-using Actors.Data;
-using Infrastructure.Services.Factory;
-using Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.Data;
+using StrexetGames.TankVsMonsters.Scripts.Extensions;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
-namespace Infrastructure.Services.SaveLoad
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad
 {
     public class SaveLoadService : ISaveLoadService
     {

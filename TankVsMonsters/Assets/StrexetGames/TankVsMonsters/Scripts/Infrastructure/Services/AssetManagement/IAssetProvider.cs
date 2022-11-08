@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.Services.AssetManagement
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.AssetManagement
 {
     public interface IAssetProvider : IService
     {

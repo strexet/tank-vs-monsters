@@ -1,6 +1,6 @@
-using Actors.Data;
+using StrexetGames.TankVsMonsters.Scripts.Data;
 
-namespace Infrastructure.Services.SaveLoad
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad
 {
     public interface ISaveLoadService : IService
     {

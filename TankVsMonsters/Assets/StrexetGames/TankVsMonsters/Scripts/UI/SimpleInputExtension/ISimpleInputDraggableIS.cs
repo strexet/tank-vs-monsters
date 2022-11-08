@@ -1,6 +1,6 @@
 ﻿using UnityEngine.EventSystems;
 
-namespace UI.SimpleInputExtension
+namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
 	public interface ISimpleInputDraggable : IPointerDownHandler, IDragHandler, IPointerUpHandler
 	{

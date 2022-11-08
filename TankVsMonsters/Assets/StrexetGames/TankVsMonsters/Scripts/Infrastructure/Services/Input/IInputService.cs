@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.Services.Input
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input
 {
     public interface IInputService : IService
     {

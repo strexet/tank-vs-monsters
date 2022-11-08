@@ -1,8 +1,8 @@
-using _Game_.Scripts.Actors.Weapons;
-using Physics;
+using StrexetGames.TankVsMonsters.Scripts.Actors.Weapons;
+using StrexetGames.TankVsMonsters.Scripts.Physics;
 using UnityEngine;
 
-namespace _Game_.Scripts.Actors.NPC.Common
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
 {
     [RequireComponent(typeof(IWeapon))]
     public class TriggerAttackStarter : MonoBehaviour

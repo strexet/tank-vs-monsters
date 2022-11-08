@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.Core
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public class GameRunner : MonoBehaviour
     {

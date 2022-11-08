@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Actors.Data
+namespace StrexetGames.TankVsMonsters.Scripts.Data
 {
     [Serializable]
     public class Vector3Data

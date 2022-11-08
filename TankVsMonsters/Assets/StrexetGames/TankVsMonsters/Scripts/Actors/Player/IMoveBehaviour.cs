@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game_.Scripts.Actors.Player
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Player
 {
     public interface IMoveBehaviour
     {

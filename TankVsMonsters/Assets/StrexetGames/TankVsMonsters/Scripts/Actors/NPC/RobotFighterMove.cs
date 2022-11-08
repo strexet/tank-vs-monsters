@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game_.Scripts.Actors.NPC
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC
 {
     public class RobotFighterMove : MonoBehaviour
     {

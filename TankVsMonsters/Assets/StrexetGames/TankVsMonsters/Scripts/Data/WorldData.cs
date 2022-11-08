@@ -1,6 +1,6 @@
 using System;
 
-namespace Actors.Data
+namespace StrexetGames.TankVsMonsters.Scripts.Data
 {
     [Serializable]
     public class WorldData

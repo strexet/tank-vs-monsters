@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Physics
+namespace StrexetGames.TankVsMonsters.Scripts.Physics
 {
     public class TriggerObserver : MonoBehaviour
     {

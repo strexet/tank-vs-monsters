@@ -1,8 +1,8 @@
-using Actors.Data;
-using Infrastructure.Services.PersistentProgress;
-using Infrastructure.Services.SaveLoad;
+using StrexetGames.TankVsMonsters.Scripts.Data;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
 
-namespace Infrastructure.States
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.States
 {
     public class LoadProgressState : IState
     {

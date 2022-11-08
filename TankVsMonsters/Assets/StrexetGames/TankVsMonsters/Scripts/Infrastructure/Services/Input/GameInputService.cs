@@ -2,7 +2,7 @@ using Input.Generated;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Infrastructure.Services.Input
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input
 {
     public class GameInputService : IInputService, PlayerInputActions.IGameplayActions
     {

@@ -1,8 +1,8 @@
-using Infrastructure.Services;
-using Infrastructure.States;
-using UI;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.States;
+using StrexetGames.TankVsMonsters.Scripts.UI;
 
-namespace Infrastructure.Core
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public class Game
     {

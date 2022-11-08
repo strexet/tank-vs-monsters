@@ -1,12 +1,13 @@
-using Actors.Data;
-using Infrastructure.Services;
-using Infrastructure.Services.Input;
-using Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.Data;
+using StrexetGames.TankVsMonsters.Scripts.Extensions;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UsefulTools.Runtime.DataStructures;
 
-namespace _Game_.Scripts.Actors.Player
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Player
 {
     public class PlayerMove : MonoBehaviour, ISavedProgress
     {

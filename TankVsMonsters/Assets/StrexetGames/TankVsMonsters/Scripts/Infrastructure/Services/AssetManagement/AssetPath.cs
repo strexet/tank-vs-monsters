@@ -1,4 +1,4 @@
-namespace Infrastructure.Services.AssetManagement
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.AssetManagement
 {
     public static class AssetPath
     {

@@ -1,9 +1,9 @@
 using Cinemachine;
-using Infrastructure.Services;
-using Infrastructure.Services.Factory;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using UnityEngine;
 
-namespace CameraLogic
+namespace StrexetGames.TankVsMonsters.Scripts.CameraLogic
 {
     public class CameraFollow : MonoBehaviour
     {

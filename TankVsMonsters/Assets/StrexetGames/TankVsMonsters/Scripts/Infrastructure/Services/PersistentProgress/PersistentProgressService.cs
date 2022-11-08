@@ -1,6 +1,6 @@
-using Actors.Data;
+using StrexetGames.TankVsMonsters.Scripts.Data;
 
-namespace Infrastructure.Services.PersistentProgress
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress
 {
     public interface IPersistentProgressService : IService
     {

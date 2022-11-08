@@ -1,7 +1,7 @@
 using UnityEngine;
 using UsefulTools.Runtime.Pools;
 
-namespace _Game_.Scripts.Actors.Weapons
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 {
     public class SelfExplosionWeapon : MonoBehaviour, IWeapon
     {

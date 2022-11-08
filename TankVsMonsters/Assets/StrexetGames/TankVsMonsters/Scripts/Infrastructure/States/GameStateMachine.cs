@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Infrastructure.Core;
-using Infrastructure.Services;
-using Infrastructure.Services.Factory;
-using Infrastructure.Services.PersistentProgress;
-using Infrastructure.Services.SaveLoad;
-using UI;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
+using StrexetGames.TankVsMonsters.Scripts.UI;
 
-namespace Infrastructure.States
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.States
 {
     public class GameStateMachine
     {

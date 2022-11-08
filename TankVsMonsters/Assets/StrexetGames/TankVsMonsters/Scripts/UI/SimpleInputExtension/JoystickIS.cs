@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 
-namespace UI.SimpleInputExtension
+namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
 	public class JoystickIS : OnScreenControl, ISimpleInputDraggable
 	{

@@ -1,9 +1,9 @@
-using Infrastructure.Services;
-using Infrastructure.Services.SaveLoad;
-using Physics;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
+using StrexetGames.TankVsMonsters.Scripts.Physics;
 using UnityEngine;
 
-namespace Logic
+namespace StrexetGames.TankVsMonsters.Scripts.Logic
 {
     public class SaveTrigger : MonoBehaviour
     {

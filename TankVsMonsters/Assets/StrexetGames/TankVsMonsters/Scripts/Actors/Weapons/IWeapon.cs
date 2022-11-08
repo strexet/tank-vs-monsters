@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game_.Scripts.Actors.Weapons
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 {
     public interface IWeapon
     {

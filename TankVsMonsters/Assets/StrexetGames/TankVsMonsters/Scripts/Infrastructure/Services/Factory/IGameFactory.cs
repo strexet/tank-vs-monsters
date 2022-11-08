@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UsefulTools.Runtime.Extensions;
 
-namespace Infrastructure.Services.Factory
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory
 {
     public interface IGameFactory : IService
     {

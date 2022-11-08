@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StrexetGames.Actors.Animators
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animators
 {
     public class RobotFighterAnimator : MonoBehaviour
     {

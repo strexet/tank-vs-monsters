@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace Infrastructure.Core
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public class SceneLoader
     {

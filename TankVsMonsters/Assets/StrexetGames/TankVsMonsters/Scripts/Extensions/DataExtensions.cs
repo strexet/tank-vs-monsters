@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Actors.Data
+namespace StrexetGames.TankVsMonsters.Scripts.Extensions
 {
     public static class DataExtensions
     {

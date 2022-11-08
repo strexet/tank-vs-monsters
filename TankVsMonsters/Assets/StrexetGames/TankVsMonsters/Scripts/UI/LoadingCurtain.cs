@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UI
+namespace StrexetGames.TankVsMonsters.Scripts.UI
 {
     public class LoadingCurtain : MonoBehaviour
     {

@@ -1,10 +1,10 @@
-using Infrastructure.Core;
-using Infrastructure.Services;
-using Infrastructure.Services.Factory;
-using Infrastructure.Services.PersistentProgress;
-using UI;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
+using StrexetGames.TankVsMonsters.Scripts.UI;
 
-namespace Infrastructure.States
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.States
 {
     public class LoadLevelState : IPayloadedState<string>
     {

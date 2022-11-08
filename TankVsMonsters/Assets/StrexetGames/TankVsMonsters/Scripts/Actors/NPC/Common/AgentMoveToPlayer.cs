@@ -1,9 +1,9 @@
-using Infrastructure.Services;
-using Infrastructure.Services.Factory;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _Game_.Scripts.Actors.NPC.Common
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
 {
     public class AgentMoveToPlayer : MonoBehaviour
     {
