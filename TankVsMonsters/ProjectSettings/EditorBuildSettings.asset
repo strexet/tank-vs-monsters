@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Initial.unity
+    path: Assets/StrexetGames/TankVsMonsters/Scenes/Initial.unity
     guid: df704c6d8273e402b9455c9418113733
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/StrexetGames/TankVsMonsters/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5580aa0d2e3b84d0cb6d2acf97a1d9c6, type: 2}
