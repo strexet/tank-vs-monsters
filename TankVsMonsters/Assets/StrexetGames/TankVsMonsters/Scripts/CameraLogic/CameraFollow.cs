@@ -1,6 +1,6 @@
-using Cinemachine;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace StrexetGames.TankVsMonsters.Scripts.CameraLogic

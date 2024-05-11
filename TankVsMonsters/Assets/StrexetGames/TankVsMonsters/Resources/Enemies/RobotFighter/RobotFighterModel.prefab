@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 5985792119419531960}
   - component: {fileID: 5985792119426751838}
   - component: {fileID: 7586635667118503009}
+  - component: {fileID: 7984323150274691099}
   m_Layer: 0
   m_Name: RobotFighterModel
   m_TagString: Untagged
@@ -558,7 +559,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: cf3910b7639e12447827e45f63f60201, type: 3}
   m_Controller: {fileID: 9100000, guid: 5aa0eaac5a14748169f20c258e75245d, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -583,6 +584,23 @@ MonoBehaviour:
   _maxMoveRootSpeed: 10
   _switchToRunThreshold: 0.5
   _moveSpeedThreshold: 0.01
+--- !u!114 &7984323150274691099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985792119419367066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3baec38ff2834ad7b481d95490beb1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentTransform: {fileID: 0}
+  _parentBody: {fileID: 0}
+  _animator: {fileID: 5985792119426751838}
+  _useBodyMove: 1
+  _useTransformMove: 0
 --- !u!1 &5985792119419367068
 GameObject:
   m_ObjectHideFlags: 0

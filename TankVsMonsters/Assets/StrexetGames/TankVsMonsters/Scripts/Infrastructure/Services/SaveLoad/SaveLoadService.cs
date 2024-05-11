@@ -27,7 +27,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad
             }
 
             var progressJson = _progressService.Progress.ToJson();
-            
+
             PlayerPrefs.SetString(ProgressKey, progressJson);
             PlayerPrefs.Save();
         }

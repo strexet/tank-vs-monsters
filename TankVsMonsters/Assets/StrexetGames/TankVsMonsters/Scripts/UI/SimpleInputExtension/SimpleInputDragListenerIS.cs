@@ -5,47 +5,50 @@ using UnityEngine.UI;
 
 namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
-	public class SimpleInputDragListenerIS : MonoBehaviour, ISimpleInputDraggable
-	{
-		public ISimpleInputDraggable Listener { get; set; }
+    public class SimpleInputDragListenerIS : MonoBehaviour, ISimpleInputDraggable
+    {
+        public ISimpleInputDraggable Listener { get; set; }
 
-		private int pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
+        private int pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
 
-		private void Awake()
-		{
-			Graphic graphic = GetComponent<Graphic>();
-			if( !graphic )
-				graphic = gameObject.AddComponent<NonDrawingGraphic>();
+        private void Awake()
+        {
+            var graphic = GetComponent<Graphic>();
+            if (!graphic)
+            {
+                graphic = gameObject.AddComponent<NonDrawingGraphic>();
+            }
 
-			graphic.raycastTarget = true;
-		}
+            graphic.raycastTarget = true;
+        }
 
-		public void OnPointerDown( PointerEventData eventData )
-		{
-			Listener.OnPointerDown( eventData );
-			pointerId = eventData.pointerId;
-		}
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            Listener.OnPointerDown(eventData);
+            pointerId = eventData.pointerId;
+        }
 
-		public void OnDrag( PointerEventData eventData )
-		{
-			if( pointerId != eventData.pointerId )
-				return;
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (pointerId != eventData.pointerId)
+            {
+                return;
+            }
 
-			Listener.OnDrag( eventData );
-		}
+            Listener.OnDrag(eventData);
+        }
 
-		public void OnPointerUp( PointerEventData eventData )
-		{
-			if( pointerId != eventData.pointerId )
-				return;
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (pointerId != eventData.pointerId)
+            {
+                return;
+            }
 
-			Listener.OnPointerUp( eventData );
-			pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
-		}
+            Listener.OnPointerUp(eventData);
+            pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
+        }
 
-		public void Stop()
-		{
-			pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
-		}
-	}
+        public void Stop() => pointerId = SimpleInputUtils.NON_EXISTING_TOUCH;
+    }
 }

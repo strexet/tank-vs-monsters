@@ -12,6 +12,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input
         public bool IsAttackButtonPressed { get; private set; }
         public bool IsNextWeaponButtonPressed { get; private set; }
         public bool IsPreviousWeaponButtonPressed { get; private set; }
+        public bool IsJumpButtonPressed { get; private set; }
 
         public GameInputService()
         {
@@ -61,6 +62,18 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input
             else if (context.canceled)
             {
                 IsPreviousWeaponButtonPressed = false;
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                IsJumpButtonPressed = true;
+            }
+            else if (context.canceled)
+            {
+                IsJumpButtonPressed = false;
             }
         }
     }

@@ -2,7 +2,5 @@
 
 namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
-	public interface ISimpleInputDraggable : IPointerDownHandler, IDragHandler, IPointerUpHandler
-	{
-	}
+    public interface ISimpleInputDraggable : IPointerDownHandler, IDragHandler, IPointerUpHandler { }
 }

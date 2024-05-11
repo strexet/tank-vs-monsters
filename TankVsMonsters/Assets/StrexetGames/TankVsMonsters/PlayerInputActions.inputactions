@@ -18,7 +18,7 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "9c2fb040-8e05-4495-9772-c0cfaf3dd57b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "NextWeapon",
                     "type": "Button",
                     "id": "512ae320-de6a-4662-8db0-e8610c8678a0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -36,7 +36,16 @@
                     "name": "PreviousWeapon",
                     "type": "Button",
                     "id": "dfdf7fa1-49b6-4ae3-81a8-d83131aaf2ba",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "98bb0f72-a585-4e88-925d-3e58fccde177",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -221,17 +230,6 @@
                 },
                 {
                     "name": "",
-                    "id": "47f0fb03-7bc7-45ae-8280-f62586c4084f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "66d6bf85-ea8c-40f2-b51d-e74cbdca1dab",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -265,12 +263,45 @@
                 },
                 {
                     "name": "",
+                    "id": "f572032d-08e8-414f-8987-2801ee13016c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "69d1945d-54d5-47ca-bafa-e0ab06906815",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "PreviousWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8295827-8d29-47fc-bb12-e3a9353f7937",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviousWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47f0fb03-7bc7-45ae-8280-f62586c4084f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
