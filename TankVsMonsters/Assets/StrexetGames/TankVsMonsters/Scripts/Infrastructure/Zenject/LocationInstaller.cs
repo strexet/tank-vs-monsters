@@ -8,7 +8,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Zenject
     {
         public Transform StartPoint;
         public GameObject HeroPrefab;
-        
+
         public override void InstallBindings()
         {
             BindHero();
@@ -16,8 +16,12 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Zenject
 
         private void BindHero()
         {
-            var playerMove = Container
-               .InstantiatePrefabForComponent<PlayerMove>(HeroPrefab, StartPoint.position, Quaternion.identity, null);
+            var playerMove = Container.InstantiatePrefabForComponent<PlayerMove>(
+                HeroPrefab,
+                StartPoint.position,
+                Quaternion.identity,
+                null
+            );
 
             Container
                .Bind<PlayerMove>()
