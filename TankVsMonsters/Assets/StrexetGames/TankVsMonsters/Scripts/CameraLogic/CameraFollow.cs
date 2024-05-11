@@ -7,7 +7,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.CameraLogic
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] private CinemachineCamera _virtualCamera;
         private IGameFactory _gameFactory;
 
         private void Awake()
