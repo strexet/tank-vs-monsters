@@ -10,7 +10,12 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
         Scene = 100
     }
 
-    public class ServiceLocator
+    public interface ISceneServices
+    {
+        void DisposeSceneServices();
+    }
+
+    public class ServiceLocator : ISceneServices
     {
         private static ServiceLocator instance;
 
@@ -33,8 +38,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
             };
         }
 
-        public void DisposeSceneServices() =>
-            _sceneServices.Clear();
+        public void DisposeSceneServices() => _sceneServices.Clear();
 
         public TService Single<TService>() where TService : IService
         {

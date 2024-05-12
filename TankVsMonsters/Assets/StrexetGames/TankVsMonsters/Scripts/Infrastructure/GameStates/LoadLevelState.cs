@@ -13,9 +13,9 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
         private readonly LoadingCurtain _loadingCurtain;
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _persistentProgressService;
-        private readonly ServiceLocator _services;
+        private readonly ISceneServices _services;
 
-        public LoadLevelState(GameStateMachine gameStateMachine, ServiceLocator services, SceneLoader sceneLoader,
+        public LoadLevelState(GameStateMachine gameStateMachine, ISceneServices services, SceneLoader sceneLoader,
             LoadingCurtain loadingCurtain, IGameFactory gameFactory, IPersistentProgressService persistentProgressService)
         {
             _gameStateMachine = gameStateMachine;
