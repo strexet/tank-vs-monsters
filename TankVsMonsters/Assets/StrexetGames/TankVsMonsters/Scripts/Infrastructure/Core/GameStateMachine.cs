@@ -1,4 +1,4 @@
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
@@ -6,7 +6,7 @@ using StrexetGames.TankVsMonsters.Scripts.UI;
 using System;
 using System.Collections.Generic;
 
-namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public class GameStateMachine
     {

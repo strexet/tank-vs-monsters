@@ -1,3 +1,5 @@
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
+
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
 {
     public class GameLoopState : IState
