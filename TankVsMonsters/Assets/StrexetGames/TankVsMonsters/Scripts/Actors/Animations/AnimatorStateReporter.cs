@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
@@ -11,7 +10,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
         {
             base.OnStateExit(animator, stateInfo, layerIndex);
             FindReader(animator);
-            
+
             _stateReader.ExitedState(stateInfo.shortNameHash);
         }
 
@@ -19,7 +18,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
         {
             base.OnStateEnter(animator, stateInfo, layerIndex);
             FindReader(animator);
-            
+
             _stateReader.EnteredState(stateInfo.shortNameHash);
         }
 
@@ -32,6 +31,5 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
 
             _stateReader = animator.GetComponent<IAnimationStateReader>();
         }
-
     }
 }

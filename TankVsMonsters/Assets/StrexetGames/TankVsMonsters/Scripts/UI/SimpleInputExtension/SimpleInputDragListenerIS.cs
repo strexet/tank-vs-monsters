@@ -14,6 +14,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
         private void Awake()
         {
             var graphic = GetComponent<Graphic>();
+
             if (!graphic)
             {
                 graphic = gameObject.AddComponent<NonDrawingGraphic>();

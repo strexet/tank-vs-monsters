@@ -1,6 +1,6 @@
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using System;
 using System.Collections.Generic;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UsefulTools.Runtime.Extensions;
 

@@ -32,6 +32,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
             using var colliders = CollidersPool.GetArray();
 
             var explosionPosition = transform.position;
+
             var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition,
                 _explosionRadius, colliders.RawData, _explosionLayerMask);
 
@@ -62,8 +63,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
             {
                 attacker.SetActive(false);
                 Destroy(attacker);
-                Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " +
-                          $"BANG! -- {gameObject.name} died in furious explosion!");
+                Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " + $"BANG! -- {gameObject.name} died in furious explosion!");
             }
         }
     }

@@ -1,5 +1,4 @@
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,8 +18,8 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
         private void Update()
         {
             var sqrDistance = -1f;
-            
-            if (!_gameFactory.IsPlayerCreated 
+
+            if (!_gameFactory.IsPlayerCreated
                 || IsPlayerTooFar(ref sqrDistance)
                 || PlayerReached(ref sqrDistance))
             {
@@ -38,7 +37,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
                 var distanceVector = playerPosition - transform.position;
                 sqrDistance = distanceVector.sqrMagnitude;
             }
-            
+
             return sqrDistance > _maxDistance * _maxDistance;
         }
 
@@ -50,7 +49,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
                 var distanceVector = playerPosition - transform.position;
                 sqrDistance = distanceVector.sqrMagnitude;
             }
-            
+
             return sqrDistance <= _minDistance * _minDistance;
         }
 

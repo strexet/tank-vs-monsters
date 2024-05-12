@@ -33,7 +33,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input
             if (context.started)
             {
                 IsAttackButtonPressed = true;
-                Debug.Log($"[DEBUG]<color=red>{nameof(GameInputService)}.{nameof(OnShoot)}></color> " + $"BANG! Player is shooting...");
+                Debug.Log($"[DEBUG]<color=red>{nameof(GameInputService)}.{nameof(OnShoot)}></color> " + "BANG! Player is shooting...");
             }
             else if (context.canceled)
             {

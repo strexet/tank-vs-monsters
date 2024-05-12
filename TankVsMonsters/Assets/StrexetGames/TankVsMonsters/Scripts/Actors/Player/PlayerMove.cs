@@ -3,7 +3,6 @@ using StrexetGames.TankVsMonsters.Scripts.Actors.Common.MoveBehaviour;
 using StrexetGames.TankVsMonsters.Scripts.Data;
 using StrexetGames.TankVsMonsters.Scripts.Extensions;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
@@ -30,8 +29,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Player
         {
             var savedPositionOnLevel = progress.WorldData.PlayerPositionOnLevel;
 
-            if (string.Equals(savedPositionOnLevel.LevelName, CurrentLevelName()) &&
-                savedPositionOnLevel.Position != null)
+            if (string.Equals(savedPositionOnLevel.LevelName, CurrentLevelName()) && savedPositionOnLevel.Position != null)
             {
                 _moveBehaviour.Implementation.CurrentPosition = savedPositionOnLevel.Position;
             }

@@ -1,5 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -57,22 +57,22 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
         {
             _nextSwitchAnimationTime = Time.time + delay;
             await WaitForAnimationFinish(delay);
-            
+
             SetCombatStatus(0);
             StopMoving();
             await WaitForAnimationFinish(delay);
 
             Move(_moveSpeedThreshold * 2);
             await WaitForAnimationFinish(delay);
-            
+
 
             Move(_maxMoveRootSpeed);
             await WaitForAnimationFinish(delay);
-            
+
             SetCombatStatus(1);
             StopMoving();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 Attack();
                 await WaitForAnimationFinish(delay);

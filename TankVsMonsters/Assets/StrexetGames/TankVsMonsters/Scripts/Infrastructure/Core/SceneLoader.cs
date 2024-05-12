@@ -1,5 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine.SceneManagement;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core

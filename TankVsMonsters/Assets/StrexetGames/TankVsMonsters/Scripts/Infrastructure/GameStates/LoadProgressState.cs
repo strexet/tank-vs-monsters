@@ -1,5 +1,4 @@
 using StrexetGames.TankVsMonsters.Scripts.Data;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core.States;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
@@ -22,7 +21,6 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
         public void Enter()
         {
             LoadProgressOrInitNew();
-
             _gameStateMachine.Enter<LoadLevelState, string>(_progressService.Progress.WorldData.PlayerPositionOnLevel.LevelName);
         }
 
@@ -35,6 +33,6 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
             _progressService.Progress = playerProgress;
         }
 
-        private static PlayerProgress NewProgress() => new("Main");
+        protected virtual PlayerProgress NewProgress() => new("Main");
     }
 }

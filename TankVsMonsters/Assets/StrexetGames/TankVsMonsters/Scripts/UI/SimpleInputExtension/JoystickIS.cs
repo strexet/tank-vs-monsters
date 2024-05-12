@@ -13,7 +13,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
             XAndY,
             X,
             Y
-        };
+        }
 
         private RectTransform joystickTR;
         private Graphic background;
@@ -40,16 +40,16 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
         private float deadzoneRadius;
 
         [SerializeField]
-        private bool isDynamicJoystick = false;
+        private bool isDynamicJoystick;
 
         [SerializeField]
         private RectTransform dynamicJoystickMovementArea;
 
         [SerializeField]
-        private bool canFollowPointer = false;
+        private bool canFollowPointer;
 #pragma warning restore 0649
 
-        private bool joystickHeld = false;
+        private bool joystickHeld;
         private Vector2 pointerInitialPos;
 
         private float _1OverMovementAreaRadius;
@@ -79,6 +79,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
             {
                 opacity = 0f;
                 thumb.raycastTarget = false;
+
                 if (background)
                 {
                     background.raycastTarget = false;
@@ -89,6 +90,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
             else
             {
                 thumb.raycastTarget = true;
+
                 if (background)
                 {
                     background.raycastTarget = true;
@@ -106,6 +108,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
         private void Start()
         {
             SimpleInputDragListenerIS eventReceiver;
+
             if (!isDynamicJoystick)
             {
                 if (background)
@@ -171,6 +174,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
                 pointerInitialPos = Vector2.zero;
 
                 Vector3 joystickPos;
+
                 RectTransformUtility.ScreenPointToWorldPointInRectangle(dynamicJoystickMovementArea, eventData.position,
                     eventData.pressEventCamera, out joystickPos);
 
@@ -186,10 +190,12 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
         public void OnDrag(PointerEventData eventData)
         {
             Vector2 pointerPos;
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickTR, eventData.position, eventData.pressEventCamera,
                 out pointerPos);
 
             var direction = pointerPos - pointerInitialPos;
+
             if (movementAxes == MovementAxes.X)
             {
                 direction.y = 0f;
@@ -208,6 +214,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
                 if (direction.sqrMagnitude > movementAreaRadiusSqr)
                 {
                     var directionNormalized = direction.normalized * movementAreaRadius;
+
                     if (canFollowPointer)
                     {
                         joystickTR.localPosition += (Vector3)(direction - directionNormalized);
@@ -240,6 +247,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
             m_value = Vector2.zero;
 
             thumbTR.localPosition = Vector3.zero;
+
             if (!isDynamicJoystick && canFollowPointer)
             {
                 joystickTR.anchoredPosition = joystickInitialPos;
