@@ -1,5 +1,4 @@
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.AssetManagement;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input;
@@ -31,27 +30,23 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IInputService>(CreateInputService());
-            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            var inputService = new GameInputService();
+            inputService.Enable();
+            _services.RegisterSingle<IInputService>(inputService);
 
-            _services.RegisterSingle<IGameFactory>(
-                new GameFactory(_services.Single<IAssetProvider>())
-            );
+            var assetProvider = new AssetProvider();
+            _services.RegisterSingle<IAssetProvider>(assetProvider);
 
-            _services.RegisterSingle<ISaveLoadService>(
-                new SaveLoadService(_services.Single<IPersistentProgressService>(),
-                    _services.Single<IGameFactory>())
-            );
+            var persistentProgressService = new PersistentProgressService();
+            _services.RegisterSingle<IPersistentProgressService>(persistentProgressService);
+
+            var gameFactory = new GameFactory(assetProvider);
+            _services.RegisterSingle<IGameFactory>(gameFactory);
+
+            var saveLoadService = new SaveLoadService(persistentProgressService, gameFactory);
+            _services.RegisterSingle<ISaveLoadService>(saveLoadService);
         }
 
         private void OnLevelLoaded() => _gameStateMachine.Enter<LoadProgressState>();
-
-        private static GameInputService CreateInputService()
-        {
-            var inputService = new GameInputService();
-            inputService.Enable();
-            return inputService;
-        }
     }
 }
