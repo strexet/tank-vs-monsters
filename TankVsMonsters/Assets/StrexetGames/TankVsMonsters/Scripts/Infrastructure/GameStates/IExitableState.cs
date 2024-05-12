@@ -1,4 +1,4 @@
-namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.States
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
 {
     public interface IExitableState
     {

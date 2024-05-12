@@ -1,4 +1,4 @@
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory;
 using Unity.Cinemachine;
 using UnityEngine;

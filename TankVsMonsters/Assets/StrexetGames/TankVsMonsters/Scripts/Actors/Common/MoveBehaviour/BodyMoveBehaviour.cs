@@ -1,7 +1,7 @@
 using UnityEngine;
 using UsefulTools.Runtime.DataStructures;
 
-namespace StrexetGames.TankVsMonsters.Scripts.Actors.Player
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.Common.MoveBehaviour
 {
     public class BodyMoveBehaviour : MonoBehaviourImplementation<IMoveBehaviour>, IMoveBehaviour
     {

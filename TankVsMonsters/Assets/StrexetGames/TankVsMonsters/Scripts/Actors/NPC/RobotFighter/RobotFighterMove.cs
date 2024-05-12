@@ -1,11 +1,13 @@
 using StrexetGames.TankVsMonsters.Scripts.Actors.Animations;
-using StrexetGames.TankVsMonsters.Scripts.Actors.Player;
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
+using StrexetGames.TankVsMonsters.Scripts.Actors.Common;
+using StrexetGames.TankVsMonsters.Scripts.Actors.Common.MoveBehaviour;
+using StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input;
 using UnityEngine;
 using UsefulTools.Runtime.DataStructures;
 
-namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC
+namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.RobotFighter
 {
     public class RobotFighterMove : MonoBehaviour
     {

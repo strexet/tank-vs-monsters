@@ -6,7 +6,7 @@ using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Input;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad;
 
-namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.States
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
 {
     public class BootstrapState : IState
     {

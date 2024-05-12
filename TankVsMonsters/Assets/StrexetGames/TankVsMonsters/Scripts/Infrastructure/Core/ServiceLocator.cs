@@ -1,7 +1,8 @@
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 
-namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
     public enum Lifetime
     {

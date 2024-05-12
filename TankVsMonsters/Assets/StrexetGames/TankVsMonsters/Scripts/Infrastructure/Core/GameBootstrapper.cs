@@ -1,4 +1,4 @@
-using StrexetGames.TankVsMonsters.Scripts.Infrastructure.States;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates;
 using StrexetGames.TankVsMonsters.Scripts.UI;
 using UnityEngine;
 
