@@ -1,4 +1,5 @@
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core;
+using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core.States;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
 {

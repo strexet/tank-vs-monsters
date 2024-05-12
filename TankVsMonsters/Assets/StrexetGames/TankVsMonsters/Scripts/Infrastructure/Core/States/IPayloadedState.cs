@@ -1,4 +1,4 @@
-namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.GameStates
+namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core.States
 {
     public interface IPayloadedState<in TPayload> : IExitableState
     {
