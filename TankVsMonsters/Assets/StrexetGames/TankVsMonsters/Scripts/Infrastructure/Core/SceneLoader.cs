@@ -19,16 +19,9 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 
         private static async UniTaskVoid LoadSceneAsync(string sceneName, Action onLoaded, Action<float> onProgress)
         {
-            if (onProgress != null)
-            {
-                await SceneManager.LoadSceneAsync(sceneName)
-                   .ToUniTask(Progress.Create(onProgress));
-            }
-            else
-            {
-                await SceneManager.LoadSceneAsync(sceneName)
-                   .ToUniTask();
-            }
+            await (onProgress != null
+                ? SceneManager.LoadSceneAsync(sceneName).ToUniTask(Progress.Create(onProgress))
+                : SceneManager.LoadSceneAsync(sceneName).ToUniTask());
 
             onLoaded?.Invoke();
         }
