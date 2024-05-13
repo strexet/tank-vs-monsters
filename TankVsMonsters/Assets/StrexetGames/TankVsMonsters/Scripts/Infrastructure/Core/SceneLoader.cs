@@ -14,7 +14,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
                 return;
             }
 
-            LoadSceneAsync(sceneName, onLoaded, onProgress);
+            LoadSceneAsync(sceneName, onLoaded, onProgress).Forget();
         }
 
         private static async UniTaskVoid LoadSceneAsync(string sceneName, Action onLoaded, Action<float> onProgress)

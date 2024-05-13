@@ -48,7 +48,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Animations
 
         private void Start()
         {
-            PlayAnimations(5.5f);
+            PlayAnimations(5.5f).Forget();
         }
 
         private float _nextSwitchAnimationTime;
