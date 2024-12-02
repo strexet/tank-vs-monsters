@@ -1,0 +1,3 @@
+[submodule "TankVsMonsters/Assets/StrexetGames/UsefulTools"]
+	path = TankVsMonsters/Assets/StrexetGames/UsefulTools
+	url = https://github.com/strexet/UsefulTools.git
