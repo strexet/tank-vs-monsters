@@ -3,68 +3,68 @@ using UsefulTools.Runtime.Pools;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 {
-    public class SelfExplosionWeapon : MonoBehaviour, IWeapon
-    {
-        [SerializeField] private Rigidbody _selfRigidbody;
+	public class SelfExplosionWeapon : MonoBehaviour, IWeapon
+	{
+		[SerializeField] private Rigidbody _selfRigidbody;
 
-        [Space]
-        [SerializeField] private float _explosionRadius;
-        [SerializeField] private float _explosionForce;
-        [SerializeField] private LayerMask _explosionLayerMask;
+		[Space]
+		[SerializeField] private float _explosionRadius;
+		[SerializeField] private float _explosionForce;
+		[SerializeField] private LayerMask _explosionLayerMask;
 
-        [Space]
-        [SerializeField] private bool _destroyOnAttack;
+		[Space]
+		[SerializeField] private bool _destroyOnAttack;
 
-        [Space]
-        [SerializeField] private ParticleSystem[] _explosions;
+		[Space]
+		[SerializeField] private ParticleSystem[] _explosions;
 
-        private static readonly ArrayPool<Collider> CollidersPool = new(5);
+		private readonly static ArrayPool<Collider> CollidersPool = new(5);
 
-        public void Attack(GameObject attacker, GameObject attacked)
-        {
-            AddExplosionForce();
-            PlayParticles();
-            RemoveAttacker(attacker);
-        }
+		public void Attack(GameObject attacker, GameObject attacked)
+		{
+			AddExplosionForce();
+			PlayParticles();
+			RemoveAttacker(attacker);
+		}
 
-        private void AddExplosionForce()
-        {
-            using var colliders = CollidersPool.GetArray();
+		private void AddExplosionForce()
+		{
+			using var colliders = CollidersPool.GetArray();
 
-            var explosionPosition = transform.position;
+			var explosionPosition = transform.position;
 
-            var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition,
-                _explosionRadius, colliders.RawData, _explosionLayerMask);
+			var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition,
+			                                                             _explosionRadius, colliders.RawData, _explosionLayerMask);
 
-            for (var i = 0; i < overlapCount; i++)
-            {
-                var rb = colliders[i].GetComponent<Rigidbody>();
+			for (var i = 0; i < overlapCount; i++)
+			{
+				var rb = colliders[i].GetComponent<Rigidbody>();
 
-                if (rb != null && rb != _selfRigidbody)
-                {
-                    rb.AddExplosionForce(_explosionForce, explosionPosition, _explosionRadius);
-                }
-            }
-        }
+				if (rb != null && rb != _selfRigidbody)
+				{
+					rb.AddExplosionForce(_explosionForce, explosionPosition, _explosionRadius);
+				}
+			}
+		}
 
-        private void PlayParticles()
-        {
-            foreach (var explosion in _explosions)
-            {
-                explosion.transform.SetParent(null);
-                explosion.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                explosion.Play(true);
-            }
-        }
+		private void PlayParticles()
+		{
+			foreach (var explosion in _explosions)
+			{
+				explosion.transform.SetParent(null);
+				explosion.transform.SetPositionAndRotation(transform.position, transform.rotation);
+				explosion.Play(true);
+			}
+		}
 
-        private void RemoveAttacker(GameObject attacker)
-        {
-            if (_destroyOnAttack)
-            {
-                attacker.SetActive(false);
-                Destroy(attacker);
-                Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " + $"BANG! -- {gameObject.name} died in furious explosion!");
-            }
-        }
-    }
+		private void RemoveAttacker(GameObject attacker)
+		{
+			if (_destroyOnAttack)
+			{
+				attacker.SetActive(false);
+				Destroy(attacker);
+				Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " + $"BANG! -- {gameObject.name} died in furious explosion!");
+			}
+		}
+	}
 }

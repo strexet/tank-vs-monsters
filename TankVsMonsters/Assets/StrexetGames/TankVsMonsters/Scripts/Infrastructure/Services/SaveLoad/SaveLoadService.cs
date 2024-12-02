@@ -6,37 +6,37 @@ using UnityEngine;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.SaveLoad
 {
-    public class SaveLoadService : ISaveLoadService
-    {
-        private const string ProgressKey = "Progress";
+	public class SaveLoadService : ISaveLoadService
+	{
+		private const string ProgressKey = "Progress";
 
-        private readonly IPersistentProgressService _progressService;
-        private readonly IGameFactory _gameFactory;
+		private readonly IPersistentProgressService _progressService;
+		private readonly IGameFactory _gameFactory;
 
-        public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
-        {
-            _progressService = progressService;
-            _gameFactory = gameFactory;
-        }
+		public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
+		{
+			_progressService = progressService;
+			_gameFactory = gameFactory;
+		}
 
-        public void SaveProgress()
-        {
-            foreach (var progressWriter in _gameFactory.ProgressWriters)
-            {
-                progressWriter.UpdateProgress(_progressService.Progress);
-            }
+		public void SaveProgress()
+		{
+			foreach (var progressWriter in _gameFactory.ProgressWriters)
+			{
+				progressWriter.UpdateProgress(_progressService.Progress);
+			}
 
-            var progressJson = _progressService.Progress.ToJson();
+			var progressJson = _progressService.Progress.ToJson();
 
-            PlayerPrefs.SetString(ProgressKey, progressJson);
-            PlayerPrefs.Save();
-        }
+			PlayerPrefs.SetString(ProgressKey, progressJson);
+			PlayerPrefs.Save();
+		}
 
-        public PlayerProgress LoadProgress()
-        {
-            var progressJson = PlayerPrefs.GetString(ProgressKey);
-            var playerProgress = progressJson?.FromJson<PlayerProgress>();
-            return playerProgress;
-        }
-    }
+		public PlayerProgress LoadProgress()
+		{
+			var progressJson = PlayerPrefs.GetString(ProgressKey);
+			var playerProgress = progressJson?.FromJson<PlayerProgress>();
+			return playerProgress;
+		}
+	}
 }

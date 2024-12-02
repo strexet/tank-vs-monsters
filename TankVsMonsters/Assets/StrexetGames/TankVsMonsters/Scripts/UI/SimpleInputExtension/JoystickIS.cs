@@ -6,282 +6,282 @@ using UnityEngine.UI;
 
 namespace StrexetGames.TankVsMonsters.Scripts.UI.SimpleInputExtension
 {
-    public class JoystickIS : OnScreenControl, ISimpleInputDraggable
-    {
-        public enum MovementAxes
-        {
-            XAndY,
-            X,
-            Y
-        }
+	public class JoystickIS : OnScreenControl, ISimpleInputDraggable
+	{
+		public enum MovementAxes
+		{
+			XAndY,
+			X,
+			Y,
+		}
 
-        private RectTransform joystickTR;
-        private Graphic background;
+		private RectTransform joystickTR;
+		private Graphic background;
 
-        public MovementAxes movementAxes = MovementAxes.XAndY;
-        public float valueMultiplier = 1f;
+		public MovementAxes movementAxes = MovementAxes.XAndY;
+		public float valueMultiplier = 1f;
 
 #pragma warning disable 0649
-        [Space]
-        [InputControl(layout = "Vector2")]
-        [SerializeField]
-        private string m_ControlPath;
+		[Space]
+		[InputControl(layout = "Vector2")]
+		[SerializeField]
+		private string m_ControlPath;
 
-        [Space]
-        [SerializeField]
-        private Image thumb;
-        private RectTransform thumbTR;
+		[Space]
+		[SerializeField]
+		private Image thumb;
+		private RectTransform thumbTR;
 
-        [SerializeField]
-        private float movementAreaRadius = 75f;
+		[SerializeField]
+		private float movementAreaRadius = 75f;
 
-        [Tooltip("Radius of the deadzone at the center of the joystick that will yield no input")]
-        [SerializeField]
-        private float deadzoneRadius;
+		[Tooltip("Radius of the deadzone at the center of the joystick that will yield no input")]
+		[SerializeField]
+		private float deadzoneRadius;
 
-        [SerializeField]
-        private bool isDynamicJoystick;
+		[SerializeField]
+		private bool isDynamicJoystick;
 
-        [SerializeField]
-        private RectTransform dynamicJoystickMovementArea;
+		[SerializeField]
+		private RectTransform dynamicJoystickMovementArea;
 
-        [SerializeField]
-        private bool canFollowPointer;
+		[SerializeField]
+		private bool canFollowPointer;
 #pragma warning restore 0649
 
-        private bool joystickHeld;
-        private Vector2 pointerInitialPos;
+		private bool joystickHeld;
+		private Vector2 pointerInitialPos;
 
-        private float _1OverMovementAreaRadius;
-        private float movementAreaRadiusSqr;
-        private float deadzoneRadiusSqr;
+		private float _1OverMovementAreaRadius;
+		private float movementAreaRadiusSqr;
+		private float deadzoneRadiusSqr;
 
-        private Vector2 joystickInitialPos;
+		private Vector2 joystickInitialPos;
 
-        private float opacity = 1f;
+		private float opacity = 1f;
 
-        private Vector2 m_value = Vector2.zero;
-        public Vector2 Value => m_value;
+		private Vector2 m_value = Vector2.zero;
 
-        protected override string controlPathInternal
-        {
-            get => m_ControlPath;
-            set => m_ControlPath = value;
-        }
+		public Vector2 Value => m_value;
 
-        private void Awake()
-        {
-            joystickTR = (RectTransform)transform;
-            thumbTR = thumb.rectTransform;
-            background = GetComponent<Graphic>();
+		override protected string controlPathInternal {
+			get => m_ControlPath;
+			set => m_ControlPath = value;
+		}
 
-            if (isDynamicJoystick)
-            {
-                opacity = 0f;
-                thumb.raycastTarget = false;
+		private void Awake()
+		{
+			joystickTR = (RectTransform)transform;
+			thumbTR = thumb.rectTransform;
+			background = GetComponent<Graphic>();
 
-                if (background)
-                {
-                    background.raycastTarget = false;
-                }
+			if (isDynamicJoystick)
+			{
+				opacity = 0f;
+				thumb.raycastTarget = false;
 
-                OnUpdate();
-            }
-            else
-            {
-                thumb.raycastTarget = true;
+				if (background)
+				{
+					background.raycastTarget = false;
+				}
 
-                if (background)
-                {
-                    background.raycastTarget = true;
-                }
-            }
+				OnUpdate();
+			}
+			else
+			{
+				thumb.raycastTarget = true;
 
-            _1OverMovementAreaRadius = 1f / movementAreaRadius;
-            movementAreaRadiusSqr = movementAreaRadius * movementAreaRadius;
-            deadzoneRadiusSqr = deadzoneRadius * deadzoneRadius;
+				if (background)
+				{
+					background.raycastTarget = true;
+				}
+			}
 
-            joystickInitialPos = joystickTR.anchoredPosition;
-            thumbTR.localPosition = Vector3.zero;
-        }
+			_1OverMovementAreaRadius = 1f / movementAreaRadius;
+			movementAreaRadiusSqr = movementAreaRadius * movementAreaRadius;
+			deadzoneRadiusSqr = deadzoneRadius * deadzoneRadius;
 
-        private void Start()
-        {
-            SimpleInputDragListenerIS eventReceiver;
+			joystickInitialPos = joystickTR.anchoredPosition;
+			thumbTR.localPosition = Vector3.zero;
+		}
 
-            if (!isDynamicJoystick)
-            {
-                if (background)
-                {
-                    eventReceiver = background.gameObject.AddComponent<SimpleInputDragListenerIS>();
-                }
-                else
-                {
-                    eventReceiver = thumbTR.gameObject.AddComponent<SimpleInputDragListenerIS>();
-                }
-            }
-            else
-            {
-                if (!dynamicJoystickMovementArea)
-                {
-                    dynamicJoystickMovementArea = new GameObject("Dynamic Joystick Movement Area", typeof(RectTransform))
-                       .GetComponent<RectTransform>();
+		private void Start()
+		{
+			SimpleInputDragListenerIS eventReceiver;
 
-                    dynamicJoystickMovementArea.SetParent(thumb.canvas.transform, false);
-                    dynamicJoystickMovementArea.SetAsFirstSibling();
-                    dynamicJoystickMovementArea.anchorMin = Vector2.zero;
-                    dynamicJoystickMovementArea.anchorMax = Vector2.one;
-                    dynamicJoystickMovementArea.sizeDelta = Vector2.zero;
-                    dynamicJoystickMovementArea.anchoredPosition = Vector2.zero;
-                }
+			if (!isDynamicJoystick)
+			{
+				if (background)
+				{
+					eventReceiver = background.gameObject.AddComponent<SimpleInputDragListenerIS>();
+				}
+				else
+				{
+					eventReceiver = thumbTR.gameObject.AddComponent<SimpleInputDragListenerIS>();
+				}
+			}
+			else
+			{
+				if (!dynamicJoystickMovementArea)
+				{
+					dynamicJoystickMovementArea = new GameObject("Dynamic Joystick Movement Area", typeof(RectTransform))
+					   .GetComponent<RectTransform>();
 
-                eventReceiver = dynamicJoystickMovementArea.gameObject.AddComponent<SimpleInputDragListenerIS>();
-            }
+					dynamicJoystickMovementArea.SetParent(thumb.canvas.transform, false);
+					dynamicJoystickMovementArea.SetAsFirstSibling();
+					dynamicJoystickMovementArea.anchorMin = Vector2.zero;
+					dynamicJoystickMovementArea.anchorMax = Vector2.one;
+					dynamicJoystickMovementArea.sizeDelta = Vector2.zero;
+					dynamicJoystickMovementArea.anchoredPosition = Vector2.zero;
+				}
 
-            eventReceiver.Listener = this;
-        }
+				eventReceiver = dynamicJoystickMovementArea.gameObject.AddComponent<SimpleInputDragListenerIS>();
+			}
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
+			eventReceiver.Listener = this;
+		}
 
-            SimpleInput.OnUpdate += OnUpdate;
-        }
+		override protected void OnEnable()
+		{
+			base.OnEnable();
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
+			SimpleInput.OnUpdate += OnUpdate;
+		}
 
-            OnPointerUp(null);
-            SimpleInput.OnUpdate -= OnUpdate;
-        }
+		override protected void OnDisable()
+		{
+			base.OnDisable();
+
+			OnPointerUp(null);
+			SimpleInput.OnUpdate -= OnUpdate;
+		}
 
 #if UNITY_EDITOR
-        private void OnValidate()
-        {
-            _1OverMovementAreaRadius = 1f / movementAreaRadius;
-            movementAreaRadiusSqr = movementAreaRadius * movementAreaRadius;
-            deadzoneRadiusSqr = deadzoneRadius * deadzoneRadius;
-        }
+		private void OnValidate()
+		{
+			_1OverMovementAreaRadius = 1f / movementAreaRadius;
+			movementAreaRadiusSqr = movementAreaRadius * movementAreaRadius;
+			deadzoneRadiusSqr = deadzoneRadius * deadzoneRadius;
+		}
 #endif
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            joystickHeld = true;
+		public void OnPointerDown(PointerEventData eventData)
+		{
+			joystickHeld = true;
 
-            if (isDynamicJoystick)
-            {
-                pointerInitialPos = Vector2.zero;
+			if (isDynamicJoystick)
+			{
+				pointerInitialPos = Vector2.zero;
 
-                Vector3 joystickPos;
+				Vector3 joystickPos;
 
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(dynamicJoystickMovementArea, eventData.position,
-                    eventData.pressEventCamera, out joystickPos);
+				RectTransformUtility.ScreenPointToWorldPointInRectangle(dynamicJoystickMovementArea, eventData.position,
+				                                                        eventData.pressEventCamera, out joystickPos);
 
-                joystickTR.position = joystickPos;
-            }
-            else
-            {
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickTR, eventData.position, eventData.pressEventCamera,
-                    out pointerInitialPos);
-            }
-        }
+				joystickTR.position = joystickPos;
+			}
+			else
+			{
+				RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickTR, eventData.position, eventData.pressEventCamera,
+				                                                        out pointerInitialPos);
+			}
+		}
 
-        public void OnDrag(PointerEventData eventData)
-        {
-            Vector2 pointerPos;
+		public void OnDrag(PointerEventData eventData)
+		{
+			Vector2 pointerPos;
 
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickTR, eventData.position, eventData.pressEventCamera,
-                out pointerPos);
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(joystickTR, eventData.position, eventData.pressEventCamera,
+			                                                        out pointerPos);
 
-            var direction = pointerPos - pointerInitialPos;
+			var direction = pointerPos - pointerInitialPos;
 
-            if (movementAxes == MovementAxes.X)
-            {
-                direction.y = 0f;
-            }
-            else if (movementAxes == MovementAxes.Y)
-            {
-                direction.x = 0f;
-            }
+			if (movementAxes == MovementAxes.X)
+			{
+				direction.y = 0f;
+			}
+			else if (movementAxes == MovementAxes.Y)
+			{
+				direction.x = 0f;
+			}
 
-            if (direction.sqrMagnitude <= deadzoneRadiusSqr)
-            {
-                m_value.Set(0f, 0f);
-            }
-            else
-            {
-                if (direction.sqrMagnitude > movementAreaRadiusSqr)
-                {
-                    var directionNormalized = direction.normalized * movementAreaRadius;
+			if (direction.sqrMagnitude <= deadzoneRadiusSqr)
+			{
+				m_value.Set(0f, 0f);
+			}
+			else
+			{
+				if (direction.sqrMagnitude > movementAreaRadiusSqr)
+				{
+					var directionNormalized = direction.normalized * movementAreaRadius;
 
-                    if (canFollowPointer)
-                    {
-                        joystickTR.localPosition += (Vector3)(direction - directionNormalized);
-                    }
+					if (canFollowPointer)
+					{
+						joystickTR.localPosition += (Vector3)(direction - directionNormalized);
+					}
 
-                    direction = directionNormalized;
-                }
+					direction = directionNormalized;
+				}
 
-                m_value = direction * _1OverMovementAreaRadius * valueMultiplier;
-            }
+				m_value = direction * _1OverMovementAreaRadius * valueMultiplier;
+			}
 
-            thumbTR.localPosition = direction;
+			thumbTR.localPosition = direction;
 
-            // xAxis.value = m_value.x;
-            // yAxis.value = m_value.y;
-            //
-            // var delta = position - m_PointerDownPos;
-            //
-            // delta = Vector2.ClampMagnitude(delta, movementRange);
-            // ((RectTransform)transform).anchoredPosition = m_StartPos + (Vector3)delta;
-            //
-            // var newPos = new Vector2(delta.x / movementRange, delta.y / movementRange);
+			// xAxis.value = m_value.x;
+			// yAxis.value = m_value.y;
+			//
+			// var delta = position - m_PointerDownPos;
+			//
+			// delta = Vector2.ClampMagnitude(delta, movementRange);
+			// ((RectTransform)transform).anchoredPosition = m_StartPos + (Vector3)delta;
+			//
+			// var newPos = new Vector2(delta.x / movementRange, delta.y / movementRange);
 
-            SendValueToControl(m_value);
-        }
+			SendValueToControl(m_value);
+		}
 
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            joystickHeld = false;
-            m_value = Vector2.zero;
+		public void OnPointerUp(PointerEventData eventData)
+		{
+			joystickHeld = false;
+			m_value = Vector2.zero;
 
-            thumbTR.localPosition = Vector3.zero;
+			thumbTR.localPosition = Vector3.zero;
 
-            if (!isDynamicJoystick && canFollowPointer)
-            {
-                joystickTR.anchoredPosition = joystickInitialPos;
-            }
+			if (!isDynamicJoystick && canFollowPointer)
+			{
+				joystickTR.anchoredPosition = joystickInitialPos;
+			}
 
-            SendValueToControl(Vector2.zero);
-        }
+			SendValueToControl(Vector2.zero);
+		}
 
-        private void OnUpdate()
-        {
-            if (!isDynamicJoystick)
-            {
-                return;
-            }
+		private void OnUpdate()
+		{
+			if (!isDynamicJoystick)
+			{
+				return;
+			}
 
-            if (joystickHeld)
-            {
-                opacity = Mathf.Min(1f, opacity + Time.unscaledDeltaTime * 4f);
-            }
-            else
-            {
-                opacity = Mathf.Max(0f, opacity - Time.unscaledDeltaTime * 4f);
-            }
+			if (joystickHeld)
+			{
+				opacity = Mathf.Min(1f, opacity + Time.unscaledDeltaTime * 4f);
+			}
+			else
+			{
+				opacity = Mathf.Max(0f, opacity - Time.unscaledDeltaTime * 4f);
+			}
 
-            var c = thumb.color;
-            c.a = opacity;
-            thumb.color = c;
+			var c = thumb.color;
+			c.a = opacity;
+			thumb.color = c;
 
-            if (background)
-            {
-                c = background.color;
-                c.a = opacity;
-                background.color = c;
-            }
-        }
-    }
+			if (background)
+			{
+				c = background.color;
+				c.a = opacity;
+				background.color = c;
+			}
+		}
+	}
 }

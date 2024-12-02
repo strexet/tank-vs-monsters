@@ -4,26 +4,26 @@ using UnityEngine.SceneManagement;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Core
 {
-    public class SceneLoader
-    {
-        public void Load(string sceneName, Action onLoaded = null, Action<float> onProgress = null)
-        {
-            if (string.Equals(sceneName, SceneManager.GetActiveScene().name))
-            {
-                onLoaded?.Invoke();
-                return;
-            }
+	public class SceneLoader
+	{
+		public void Load(string sceneName, Action onLoaded = null, Action<float> onProgress = null)
+		{
+			if (string.Equals(sceneName, SceneManager.GetActiveScene().name))
+			{
+				onLoaded?.Invoke();
+				return;
+			}
 
-            LoadSceneAsync(sceneName, onLoaded, onProgress).Forget();
-        }
+			LoadSceneAsync(sceneName, onLoaded, onProgress).Forget();
+		}
 
-        private static async UniTaskVoid LoadSceneAsync(string sceneName, Action onLoaded, Action<float> onProgress)
-        {
-            await (onProgress != null
-                ? SceneManager.LoadSceneAsync(sceneName).ToUniTask(Progress.Create(onProgress))
-                : SceneManager.LoadSceneAsync(sceneName).ToUniTask());
+		private static async UniTaskVoid LoadSceneAsync(string sceneName, Action onLoaded, Action<float> onProgress)
+		{
+			await (onProgress != null
+				? SceneManager.LoadSceneAsync(sceneName).ToUniTask(Progress.Create(onProgress))
+				: SceneManager.LoadSceneAsync(sceneName).ToUniTask());
 
-            onLoaded?.Invoke();
-        }
-    }
+			onLoaded?.Invoke();
+		}
+	}
 }
