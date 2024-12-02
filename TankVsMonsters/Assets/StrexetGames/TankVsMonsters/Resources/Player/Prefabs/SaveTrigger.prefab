@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2130509422260298733}
   - component: {fileID: 2130509422260298732}
   - component: {fileID: 2130509422260298734}
-  - component: {fileID: 2130509422260298735}
   m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
@@ -26,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130509422260298705}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2130509422843469863}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2130509422260298732
 BoxCollider:
@@ -42,9 +41,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130509422260298705}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 10, y: 4, z: 10}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2130509422260298734
@@ -59,31 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2f718917e940339f54c3388ab034e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2130509422260298735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130509422260298705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fd36bb5095a4316b283d88b985461e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Preset: 0
-  CustomWireColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.5019608}
-  CustomFillColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.24313726}
-  CustomCenterColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.6745098}
-  Alpha: 1
-  WireColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.5019608}
-  FillColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.24313726}
-  CenterColor: {r: 0.6, g: 1, b: 0.73333335, a: 0.6745098}
-  DrawFill: 1
-  DrawWire: 1
-  DrawCenter: 0
-  CenterMarkerRadius: 0.61
-  IncludeChildColliders: 1
 --- !u!1 &2130509422843469865
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +90,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130509422843469865}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.01, y: 0.081205785, z: -2.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -115,7 +98,6 @@ Transform:
   m_Children:
   - {fileID: 2130509422260298733}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2130509422843469862
 MonoBehaviour:
