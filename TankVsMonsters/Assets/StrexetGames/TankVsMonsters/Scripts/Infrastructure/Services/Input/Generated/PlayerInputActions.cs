@@ -243,6 +243,17 @@ namespace Input.Generated
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0e31292d-6484-4b40-8b35-2ce1b7ee9014"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""92115acc-4f21-423a-a5ff-4808b0c2bb2d"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
