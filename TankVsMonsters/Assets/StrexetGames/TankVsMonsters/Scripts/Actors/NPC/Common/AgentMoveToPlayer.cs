@@ -17,11 +17,15 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
 
 		private void Update()
 		{
-			var sqrDistance = -1f;
+			if (!_gameFactory.IsPlayerCreated)
+			{
+				return;
+			}
+			
+			var distanceSqr = GetPlayerDistanceSqr();
 
-			if (!_gameFactory.IsPlayerCreated
-			    || IsPlayerTooFar(ref sqrDistance)
-			    || PlayerReached(ref sqrDistance))
+			if (IsPlayerTooFar(distanceSqr)
+			    || PlayerReached(distanceSqr))
 			{
 				return;
 			}
@@ -29,29 +33,16 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.NPC.Common
 			_navMeshAgent.destination = _gameFactory.PlayerTransformData.position;
 		}
 
-		private bool IsPlayerTooFar(ref float sqrDistance)
+		private float GetPlayerDistanceSqr()
 		{
-			if (sqrDistance < 0)
-			{
-				var playerPosition = _gameFactory.PlayerTransformData.position;
-				var distanceVector = playerPosition - transform.position;
-				sqrDistance = distanceVector.sqrMagnitude;
-			}
-
-			return sqrDistance > _maxDistance * _maxDistance;
+			var playerPosition = _gameFactory.PlayerTransformData.position;
+			var distanceVector = playerPosition - transform.position;
+			return distanceVector.sqrMagnitude;
 		}
 
-		private bool PlayerReached(ref float sqrDistance)
-		{
-			if (sqrDistance < 0)
-			{
-				var playerPosition = _gameFactory.PlayerTransformData.position;
-				var distanceVector = playerPosition - transform.position;
-				sqrDistance = distanceVector.sqrMagnitude;
-			}
+		private bool IsPlayerTooFar(float sqrDistance) => sqrDistance > _maxDistance * _maxDistance;
 
-			return sqrDistance <= _minDistance * _minDistance;
-		}
+		private bool PlayerReached(float sqrDistance) => sqrDistance <= _minDistance * _minDistance;
 
 		private void OnDrawGizmosSelected()
 		{

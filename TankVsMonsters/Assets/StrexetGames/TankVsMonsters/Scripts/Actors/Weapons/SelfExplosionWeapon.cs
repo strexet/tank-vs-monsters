@@ -6,6 +6,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 	public class SelfExplosionWeapon : MonoBehaviour, IWeapon
 	{
 		[SerializeField] private Rigidbody _selfRigidbody;
+		[SerializeField] private float _maxDamage = 25;
 
 		[Space]
 		[SerializeField] private float _explosionRadius;
@@ -16,40 +17,59 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 		[SerializeField] private bool _destroyOnAttack;
 
 		[Space]
-		[SerializeField] private ParticleSystem[] _explosions;
+		[SerializeField] private ParticleSystem[] _explosionParticles;
 
 		private readonly static ArrayPool<Collider> CollidersPool = new(5);
 
 		public void Attack(GameObject attacker, GameObject attacked)
 		{
-			AddExplosionForce();
+			using var colliders = CollidersPool.GetArray();
+			var explosionPosition = transform.position;
+			var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition, _explosionRadius, colliders.RawData, _explosionLayerMask);
+
+			AddExplosionForce(explosionPosition, overlapCount, colliders.RawData);
+			ApplyExplosionDamage(explosionPosition, overlapCount, colliders.RawData);
+
 			PlayParticles();
-			RemoveAttacker(attacker);
+
+			if (_destroyOnAttack)
+			{
+				DestroyAttacker(attacker);
+			}
 		}
 
-		private void AddExplosionForce()
+		private void AddExplosionForce(Vector3 explosionPosition, int overlapCount, Collider[] colliders)
 		{
-			using var colliders = CollidersPool.GetArray();
-
-			var explosionPosition = transform.position;
-
-			var overlapCount = UnityEngine.Physics.OverlapSphereNonAlloc(explosionPosition,
-			                                                             _explosionRadius, colliders.RawData, _explosionLayerMask);
-
 			for (var i = 0; i < overlapCount; i++)
 			{
-				var rb = colliders[i].GetComponent<Rigidbody>();
-
-				if (rb != null && rb != _selfRigidbody)
+				if (colliders[i].TryGetComponent<Rigidbody>(out var rb) && rb != _selfRigidbody)
 				{
 					rb.AddExplosionForce(_explosionForce, explosionPosition, _explosionRadius);
 				}
 			}
 		}
 
+		private void ApplyExplosionDamage(Vector3 explosionPosition, int overlapCount, Collider[] colliders)
+		{
+			// for (var i = 0; i < overlapCount; i++)
+			// {
+			// 	var targetCollider = colliders[i];
+			//
+			// 	if (targetCollider.TryGetComponent<IHealth>(out var health) && rb != _selfRigidbody)
+			// 	{
+			// 		var targetPosition = targetCollider.transform.position;
+			// 		var distanceVector = explosionPosition - targetPosition;
+			// 		var distanceSqr = distanceVector.sqrMagnitude;
+			//
+			// 		var damage = _maxDamage / distanceSqr;
+			// 		health.TakeDamage(damage);
+			// 	}
+			// }
+		}
+
 		private void PlayParticles()
 		{
-			foreach (var explosion in _explosions)
+			foreach (var explosion in _explosionParticles)
 			{
 				explosion.transform.SetParent(null);
 				explosion.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -57,14 +77,11 @@ namespace StrexetGames.TankVsMonsters.Scripts.Actors.Weapons
 			}
 		}
 
-		private void RemoveAttacker(GameObject attacker)
+		private void DestroyAttacker(GameObject attacker)
 		{
-			if (_destroyOnAttack)
-			{
-				attacker.SetActive(false);
-				Destroy(attacker);
-				Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " + $"BANG! -- {gameObject.name} died in furious explosion!");
-			}
+			attacker.SetActive(false);
+			Destroy(attacker);
+			Debug.Log($"[DEBUG]<color=yellow>{nameof(SelfExplosionWeapon)}.{nameof(Attack)}></color> " + $"BANG! -- {gameObject.name} died in furious explosion!");
 		}
 	}
 }
