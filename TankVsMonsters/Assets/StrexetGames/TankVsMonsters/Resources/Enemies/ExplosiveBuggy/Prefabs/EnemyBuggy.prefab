@@ -48,13 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selfRigidbody: {fileID: 3298135327085762960}
+  _maxDamage: 25
   _explosionRadius: 5
   _explosionForce: 10
   _explosionLayerMask:
     serializedVersion: 2
     m_Bits: 12288
   _destroyOnAttack: 1
-  _explosions:
+  _explosionParticles:
   - {fileID: 683324703090115507}
   - {fileID: 2343762661033007199}
 --- !u!114 &7850093941627404507
