@@ -1,9 +1,9 @@
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.AssetManagement;
 using StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.PersistentProgress;
+using UsefulTools.Runtime.Extensions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UsefulTools.Runtime.Extensions;
 
 namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory
 {
@@ -23,7 +23,7 @@ namespace StrexetGames.TankVsMonsters.Scripts.Infrastructure.Services.Factory
 
 		public bool IsPlayerCreated { get; private set; }
 
-		public TransformData PlayerTransformData => _player.transform.GetTransformData();
+		public TransformData PlayerTransformData => _player.transform.GetData();
 
 		public Transform PlayerTransform => _player.transform;
 
